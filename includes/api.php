@@ -197,6 +197,23 @@ function generate_invoice_api($order_id, $api_key, $params) {
         }
     } else {
         // Unknown response type, try to parse as text error
+        // Save response to file for debugging
+        $cache_path = \SzamlazzHuFluentCart\get_cache_path();
+        if ($cache_path) {
+            $error_dir = $cache_path . DIRECTORY_SEPARATOR . 'errors';
+            if (!file_exists($error_dir)) {
+                wp_mkdir_p($error_dir);
+            }
+            $filename = $error_dir . DIRECTORY_SEPARATOR . 'unknown_response_' . $order_id . '_' . time() . '.txt';
+            
+            // Initialize WP_Filesystem
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            WP_Filesystem();
+            global $wp_filesystem;
+            
+            $wp_filesystem->put_contents($filename, $response_body, FS_CHMOD_FILE);
+        }
+        
         return create_error($order_id, 'api_error', 'Unknown response type', substr($response_body, 0, 200));
     }
 }
