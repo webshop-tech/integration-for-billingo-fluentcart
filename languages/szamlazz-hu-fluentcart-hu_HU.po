@@ -14,166 +14,166 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Számlázz.hu for FluentCart Settings"
 msgstr "Számlázz.hu for FluentCart Beállítások"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Settings"
 msgstr "Beállítások"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Cache cleared successfully"
 msgstr "A gyorsítótár sikeresen törölve"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping VAT rate applied to all tax rates successfully"
 msgstr "A szállítási áfa mérték sikeresen alkalmazva az összes adómértékre"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Enter your Számlázz.hu API credentials below."
 msgstr "Add meg a Számlázz.hu API hitelesítési adatokat alább."
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Agent API Key"
 msgstr "Agent API kulcs"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "What is this?"
 msgstr "Mi ez?"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping VAT Rate"
 msgstr "Szállítási áfa mérték"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Apply to Tax Rates"
 msgstr "Alkalmazás az adómértékekre"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Warning:"
 msgstr "Figyelmeztetés:"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "No tax rates found. Please configure tax rates in FluentCart first."
 msgstr "Nem találhatók adómértékek. Kérlek, először állítsd be az adómértékeket a FluentCart-ban."
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "All tax rates are already set to"
 msgstr "Minden adómérték már be van állítva erre:"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Current shipping VAT rates in use:"
 msgstr "Jelenleg használt szállítási áfa mértékek:"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Invoice Settings"
 msgstr "Számla beállítások"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Invoice Language"
 msgstr "Számla nyelve"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Invoice Type"
 msgstr "Számla típusa"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Paper Invoice"
 msgstr "Papírszámla"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "E-Invoice"
 msgstr "E-számla"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Quantity Unit"
 msgstr "Mennyiségi egység"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping Title"
 msgstr "Szállítás címe"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Magyar (Hungarian)"
 msgstr "Magyar"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "English"
 msgstr "Angol"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Deutsch (German)"
 msgstr "Német"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Italiano (Italian)"
 msgstr "Olasz"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Română (Romanian)"
 msgstr "Román"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Slovenčina (Slovak)"
 msgstr "Szlovák"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Hrvatski (Croatian)"
 msgstr "Horvát"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Français (French)"
 msgstr "Francia"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Español (Spanish)"
 msgstr "Spanyol"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Čeština (Czech)"
 msgstr "Cseh"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Polski (Polish)"
 msgstr "Lengyel"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Cache Management"
 msgstr "Gyorsítótár kezelés"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Current cache size:"
 msgstr "Jelenlegi gyorsítótár méret:"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Clear Cache"
 msgstr "Gyorsítótár törlése"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Clearing the cache will delete all cached PDFs, XMLs, and logs."
 msgstr "A gyorsítótár törlése az összes tárolt PDF-et, XML-t és naplót törölni fogja."
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Settings Saved"
 msgstr "Beállítások mentve"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Save Settings"
 msgstr "Beállítások mentése"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Actions"
 msgstr "Műveletek"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping VAT Settings"
 msgstr "Szállítási ÁFA beállítása"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Apply Shipping VAT to All Tax Rates"
 msgstr "Szállítási áfa alkalmazása az összes adómértékre"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "API Settings"
 msgstr "API beállítások"

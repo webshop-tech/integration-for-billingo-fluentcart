@@ -10,166 +10,166 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: \n"
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Számlázz.hu for FluentCart Settings"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Settings"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Cache cleared successfully"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping VAT rate applied to all tax rates successfully"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Enter your Számlázz.hu API credentials below."
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Agent API Key"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "What is this?"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping VAT Rate"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Apply to Tax Rates"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Warning:"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "No tax rates found. Please configure tax rates in FluentCart first."
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "All tax rates are already set to"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Current shipping VAT rates in use:"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Invoice Settings"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Invoice Language"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Invoice Type"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Paper Invoice"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "E-Invoice"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Quantity Unit"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping Title"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Magyar (Hungarian)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "English"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Deutsch (German)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Italiano (Italian)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Română (Romanian)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Slovenčina (Slovak)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Hrvatski (Croatian)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Français (French)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Español (Spanish)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Čeština (Czech)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Polski (Polish)"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Cache Management"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Current cache size:"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Clear Cache"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Clearing the cache will delete all cached PDFs, XMLs, and logs."
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Settings Saved"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Save Settings"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Actions"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Shipping VAT Settings"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "Apply Shipping VAT to All Tax Rates"
 msgstr ""
 
-#: szamlazz-hu-fluentcart.php
+#: integration-for-szamlazzhu-fluentcart.php
 msgid "API Settings"
 msgstr ""

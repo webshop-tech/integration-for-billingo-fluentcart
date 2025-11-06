@@ -1,9 +1,9 @@
-rm szamlazz-hu-fluentcart.zip
+rm integration-for-szamlazzhu-fluentcart.zip
 cd ..
-zip szamlazz-hu-fluentcart/szamlazz-hu-fluentcart.zip -r szamlazz-hu-fluentcart \
-   --exclude="szamlazz-hu-fluentcart/.git/*" \
-   --exclude="szamlazz-hu-fluentcart/tests/*" \
-   --exclude="szamlazz-hu-fluentcart/*.zip" \
-   --exclude="szamlazz-hu-fluentcart/*.md" \
-   --exclude="szamlazz-hu-fluentcart/*.sh"
-cd szamlazz-hu-fluentcart
+zip integration-for-szamlazzhu-fluentcart/integration-for-szamlazzhu-fluentcart.zip -r integration-for-szamlazzhu-fluentcart \
+   --exclude="integration-for-szamlazzhu-fluentcart/.git/*" \
+   --exclude="integration-for-szamlazzhu-fluentcart/tests/*" \
+   --exclude="integration-for-szamlazzhu-fluentcart/*.zip" \
+   --exclude="integration-for-szamlazzhu-fluentcart/*.md" \
+   --exclude="integration-for-szamlazzhu-fluentcart/*.sh"
+cd integration-for-szamlazzhu-fluentcart

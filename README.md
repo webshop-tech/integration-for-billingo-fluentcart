@@ -215,7 +215,7 @@ GPL v2 or later
 ## Credits
 
 - **Author**: Gábor Angyal
-- **Plugin URI**: [https://webshop.tech/szamlazz-hu-fluentcart](https://webshop.tech/szamlazz-hu-fluentcart)
+- **Plugin URI**: [https://webshop.tech/integration-for-szamlazzhu-fluentcart](https://webshop.tech/integration-for-szamlazzhu-fluentcart)
 - **Version**: 0.0.1
 
 ## Changelog
