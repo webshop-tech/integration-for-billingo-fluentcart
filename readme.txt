@@ -1,6 +1,6 @@
 === Integration for Számlázz.hu and FluentCart ===
 Contributors: gaborangyal
-Tags: szamlazz, szamlazz.hu, fluentcart, invoice, e-invoice, hungary, nav, vat
+Tags: szamlazz.hu, fluentcart, invoice, magyar, szamlazo
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
