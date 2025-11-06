@@ -975,8 +975,8 @@ function create_invoice($order, $main_order = null) {
 \add_action('init', function() {
     if (isset($_GET['fluent-cart']) && $_GET['fluent-cart'] === 'receipt') {
         // Your custom logic here
-        $order_hash = isset($_GET['order_hash']) ? \sanitize_text_field($_GET['order_hash']) : '';
-        $download = isset($_GET['download']) ? \sanitize_text_field($_GET['download']) : '';
+        $order_hash = isset($_GET['order_hash']) ? \sanitize_text_field(\wp_unslash($_GET['order_hash'])) : '';
+        $download = isset($_GET['download']) ? \sanitize_text_field(\wp_unslash($_GET['download'])) : '';
         if ($download !== '1')
             return;
 
