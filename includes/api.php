@@ -152,7 +152,7 @@ function generate_invoice_api($order_id, $api_key, $params) {
     
     // Check response code
     if ($response_code !== 200) {
-        return create_error($order_id, 'api_error', 'API returned error code', $response_code);
+        return create_error($order_id, 'api_error', 'API returned error code', $response_code, $response_headers, $response_body);
     }
     
     // Parse response based on content type
