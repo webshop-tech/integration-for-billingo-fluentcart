@@ -34,6 +34,9 @@ function write_log($order_id, $message, ...$args) {
         $formatted_message = $message;
     }
     
+    // Log to debug.log
+    \error_log(sprintf('[Számlázz.hu FluentCart] Order #%d: %s', $order_id, $formatted_message));
+    
     // Create order Activity with info status
     Activity::create([
         'status' => 'info',
@@ -44,4 +47,28 @@ function write_log($order_id, $message, ...$args) {
         'title' => 'Számlázz.hu debug info',
         'content' => $formatted_message
     ]);
+}
+
+/**
+ * Create a WP_Error and log it
+ * 
+ * @param int $order_id The order ID
+ * @param string $code Error code
+ * @param string $message Error message
+ * @param mixed ...$args Additional arguments to be concatenated with the message
+ * @return \WP_Error The created WP_Error object
+ */
+function create_error($order_id, $code, $message, ...$args) {
+    // Concatenate message with additional arguments if provided
+    if (!empty($args)) {
+        $formatted_message = $message . ': ' . \implode(', ', $args);
+    } else {
+        $formatted_message = $message;
+    }
+    
+    // Log the error
+    write_log($order_id, 'Error', $code, $formatted_message);
+    
+    // Create and return WP_Error
+    return new \WP_Error($code, $formatted_message);
 }

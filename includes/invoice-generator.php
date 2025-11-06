@@ -88,7 +88,7 @@ function create_buyer_data($order, $api_key, $vat_number = null) {
     // Get billing address
     $billing = $order->billing_address;
     if (!$billing) {
-        return new \WP_Error('no_billing_address', "No billing address found for order " . absint($order_id));
+        return create_error($order_id, 'no_billing_address', "No billing address found for order " . absint($order_id));
     }
     
     // Initialize with billing address defaults
@@ -176,7 +176,7 @@ function build_order_items_data($order) {
     $items = OrderItem::where('order_id', $order_id)->get();
     
     if ($items->isEmpty()) {
-        return new \WP_Error('no_items', "No items found for order " . absint($order_id));
+        return create_error($order_id, 'no_items', "No items found for order " . absint($order_id));
     }
     
     // Get quantity unit from settings
@@ -296,7 +296,7 @@ function generate_invoice($order) {
     $api_key = \get_option('szamlazz_hu_agent_api_key', '');
     
     if (empty($api_key)) {
-        return new \WP_Error('api_error', 'API Key not configured.');
+        return create_error($order_id, 'api_error', 'API Key not configured.');
     }
     
     // Get VAT number from checkout data
