@@ -224,7 +224,7 @@ function generate_invoice_api($order_id, $api_key, $params) {
             $wp_filesystem->put_contents($filename, $response_body, FS_CHMOD_FILE);
         }
         
-        return create_error($order_id, 'api_error', 'Unknown response type', substr($response_body, 0, 200));
+        return create_error($order_id, 'api_error', 'Unknown response type', $content_type, substr($response_body, 0, 200));
     }
 }
 
