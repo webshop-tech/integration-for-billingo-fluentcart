@@ -22,22 +22,16 @@ use FluentCart\App\Models\Activity;
  * @param mixed ...$args Variable-length argument list to be concatenated with commas
  */
 function write_log($order_id, $message, ...$args) {
-    // Only log if WP_DEBUG is enabled
     if (!\defined('WP_DEBUG') || !WP_DEBUG) {
         return;
     }
     
-    // Concatenate message with additional arguments using commas
     if (!empty($args)) {
         $formatted_message = $message . ', ' . \implode(', ', $args);
     } else {
         $formatted_message = $message;
     }
     
-    // Log to debug.log
-    \error_log(sprintf('[Számlázz.hu FluentCart] Order #%d: %s', $order_id, $formatted_message));
-    
-    // Create order Activity with info status
     Activity::create([
         'status' => 'info',
         'log_type' => 'activity',

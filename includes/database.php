@@ -80,14 +80,8 @@ function get_invoice_by_order_id($order_id) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'szamlazz_invoices';
     
-    // Note: Table names cannot be parameterized in $wpdb->prepare()
-    // Using esc_sql() for extra safety, though $wpdb->prefix is already trusted
-    $query = sprintf(
-        "SELECT * FROM %s WHERE order_id = %%d",
-        esc_sql($table_name)
-    );
     // Direct database query is necessary for custom table.
     // Response is not cached because data is volatile
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-    return $wpdb->get_row($wpdb->prepare($query, $order_id));
+    return $wpdb->get_row($wpdb->prepare("SELECT * FROM %i WHERE order_id = %d", $table_name, $order_id));
 }
