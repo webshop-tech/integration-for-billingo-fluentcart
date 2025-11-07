@@ -71,17 +71,17 @@ function save_invoice($order_id, $result) {
 }
 
 /**
- * Get invoice record by order ID
+ * Get invoice number by order ID
  * 
  * @param int $order_id The order ID
- * @return object|null The invoice record or null if not found
+ * @return string|null The invoice number or null if not found
  */
-function get_invoice_by_order_id($order_id) {
+function get_invoice_number_by_order_id($order_id) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'szamlazz_invoices';
     
     // Direct database query is necessary for custom table.
     // Response is not cached because data is volatile
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-    return $wpdb->get_row($wpdb->prepare("SELECT * FROM %i WHERE order_id = %d", $table_name, $order_id));
+    return $wpdb->get_var($wpdb->prepare("SELECT invoice_number FROM %i WHERE order_id = %d", $table_name, $order_id));
 }

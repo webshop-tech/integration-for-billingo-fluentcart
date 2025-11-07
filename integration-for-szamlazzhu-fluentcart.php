@@ -218,11 +218,11 @@ function get_pdf_path($invoice_number) {
             }
             
             // Check if invoice exists in database
-            $invoice_record = get_invoice_by_order_id($order_id);
+            $invoice_number = get_invoice_number_by_order_id($order_id);
             
-            if ($invoice_record) {
+            if ($invoice_number) {
                 // Check if PDF exists in cache
-                $cached_pdf_path = get_pdf_path($invoice_record->invoice_number);
+                $cached_pdf_path = get_pdf_path($invoice_number);
                 
                 if ($cached_pdf_path && \file_exists($cached_pdf_path)) {
                     // Serve from cache
@@ -230,7 +230,7 @@ function get_pdf_path($invoice_number) {
                 }
                 
                 // PDF not in cache, fetch from API using WordPress HTTP API
-                $result = fetch_invoice_pdf($order_id, $api_key, $invoice_record->invoice_number);
+                $result = fetch_invoice_pdf($order_id, $api_key, $invoice_number);
                 
                 // Check if fetch was successful
                 if (!is_wp_error($result) && isset($result['success']) && $result['success']) {
