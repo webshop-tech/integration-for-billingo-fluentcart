@@ -34,13 +34,13 @@ const INVOICE_TYPE_E_INVOICE = 2;
 });
 
 \add_action('admin_init', function() {
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_agent_api_key', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_agent_api_key', [
         'type' => 'string',
         'sanitize_callback' => function($value) {
             return sanitize_text_field(trim($value));
         }
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_shipping_vat', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_shipping_vat', [
         'type' => 'integer',
         'default' => 27,
         'sanitize_callback' => function($value) {
@@ -48,7 +48,7 @@ const INVOICE_TYPE_E_INVOICE = 2;
             return in_array((int)$value, $allowed) ? (int)$value : 27;
         }
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_invoice_language', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_invoice_language', [
         'type' => 'string',
         'default' => LANGUAGE_HU,
         'sanitize_callback' => function($value) {
@@ -57,7 +57,7 @@ const INVOICE_TYPE_E_INVOICE = 2;
             return in_array($value, $allowed) ? $value : LANGUAGE_HU;
         }
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_invoice_type', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_invoice_type', [
         'type' => 'integer',
         'default' => INVOICE_TYPE_P_INVOICE,
         'sanitize_callback' => function($value) {
@@ -65,24 +65,24 @@ const INVOICE_TYPE_E_INVOICE = 2;
             return in_array((int)$value, $allowed) ? (int)$value : INVOICE_TYPE_P_INVOICE;
         }
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_quantity_unit', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_quantity_unit', [
         'type' => 'string',
         'default' => 'db',
         'sanitize_callback' => 'sanitize_text_field'
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_shipping_title', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_shipping_title', [
         'type' => 'string',
         'default' => 'Szállítás',
         'sanitize_callback' => 'sanitize_text_field'
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_document_block_id', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_document_block_id', [
         'type' => 'string',
         'default' => '',
         'sanitize_callback' => function($value) {
             return empty($value) ? '' : absint($value);
         }
     ]);
-    \register_setting('billingo_fluentcart_fluentcart_settings', 'billingo_fluentcart_payment_method', [
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_payment_method', [
         'type' => 'string',
         'default' => 'Átutalás',
         'sanitize_callback' => 'sanitize_text_field'
@@ -292,7 +292,7 @@ function settings_page() {
         
         <form action="options.php" method="post">
             <?php
-            \settings_fields('billingo_fluentcart_fluentcart_settings');
+            \settings_fields('billingo_fluentcart_settings');
             \do_settings_sections('integration-for-billingo-fluentcart');
             \submit_button(\__('Save Settings', 'integration-for-billingo-fluentcart'));
             ?>
