@@ -17,6 +17,7 @@ Integration for Számlázz.hu and FluentCart is a WordPress plugin that seamless
 = Key Features =
 
 * **Automatic Invoice Generation** - Invoices are automatically created when orders are marked as paid
+* **Download Invoices** - Every receipt download button is overriden with Számlázz.hu invoice download.
 * **Multi-language Support** - Generate invoices in 11 languages: Hungarian, English, German, Italian, Romanian, Slovak, Croatian, French, Spanish, Czech, Polish
 * **Invoice Types** - Choose between Paper Invoice and E-Invoice formats
 * **VAT Number Validation** - Automatically fetches company data from NAV (Hungarian Tax Authority) when VAT number is provided
@@ -55,6 +56,7 @@ Integration for Számlázz.hu and FluentCart is a WordPress plugin that seamless
 * **B2B Sales**: Buyers must have an EU VAT ID. Local VAT ID only is not yet supported.
 * **Document Types**: Only Invoices can be generated. Receipts and Pro forma invoices are not supported.
 * **IPN**: Instant Payment Notification is not yet supported.
+* **Lag**: Customers might need to wait a few seconds on the order conrifmation page before being able to download the invoice.
 
 = Language Support =
 

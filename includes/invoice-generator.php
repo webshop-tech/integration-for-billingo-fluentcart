@@ -54,12 +54,12 @@ function get_taxpayer_data($order_id, $api_key, $vat_number) {
     }
 }
 
-function create_buyer_data($order, $api_key, $vat_number = null) {
+function create_buyer_data($order, $current_order_id, $api_key, $vat_number = null) {
     $order_id = $order->id;
     
     $billing = $order->billing_address;
     if (!$billing) {
-        return create_error($order_id, 'no_billing_address', "No billing address found for order " . absint($order_id));
+        return create_error($current_order_id, 'no_billing_address', "No billing address found for order " . absint($order_id));
     }
     
     $buyer_name = $billing->name;
@@ -111,30 +111,30 @@ function create_buyer_data($order, $api_key, $vat_number = null) {
         $buyer_data['send_email'] = false; // Don't send email by default
     }
     
-    write_log($order_id, 'Buyer data created', 'Name', $buyer_name, 'City', $buyer_city);
+    write_log($current_order_id, 'Buyer data created', 'Name', $buyer_name, 'City', $buyer_city);
     
     return $buyer_data;
 }
 
-function create_seller_data($order_id) {
+function create_seller_data($current_order_id) {
     return array(
         'email_reply_to' => \get_option('admin_email'),
-        'email_subject' => 'Invoice for order #' . $order_id,
+        'email_subject' => 'Invoice for order #' . $current_order_id,
         'email_content' => 'Thank you for your order. Please find your invoice attached.',
     );
 }
 
-function build_order_items_data($order) {
+function build_order_items_data($order, $current_order_id) {
     $order_id = $order->id;
     $items = OrderItem::where('order_id', $order_id)->get();
     
     if ($items->isEmpty()) {
-        return create_error($order_id, 'no_items', "No items found for order " . absint($order_id));
+        return create_error($current_order_id, 'no_items', "No items found for order " . absint($order_id));
     }
     
     $quantity_unit = \get_option('szamlazz_hu_quantity_unit', 'db');
     
-    write_log($order_id, 'Building order items', 'Item count', $items->count());
+    write_log($current_order_id, 'Building order items', 'Item count', $items->count());
     
     $items_data = array();
     
@@ -164,7 +164,7 @@ function build_order_items_data($order) {
         );
         
         write_log(
-            $order_id, 
+            $current_order_id, 
             'Item', 
             $order_item->title, 
             'Qty', 
@@ -223,30 +223,30 @@ function log_activity($order_id, $success, $message) {
     ]);
 }
 
-function generate_invoice($order) {
+function generate_invoice($order, $current_order_id) {
     $order_id = $order->id;
     
-    write_log($order_id, 'Starting invoice generation', 'Order ID', $order_id, 'Currency', $order->currency);
+    write_log($current_order_id, 'Starting invoice generation', 'Currency', $order->currency);
     
     $api_key = \get_option('szamlazz_hu_agent_api_key', '');
     
     if (empty($api_key)) {
-        return create_error($order_id, 'api_error', 'API Key not configured.');
+        return create_error($current_order_id, 'api_error', 'API Key not configured.');
     }
     
     $vat_number = get_vat_number($order_id);
     if ($vat_number) {
-        write_log($order_id, 'VAT number found', $vat_number);
+        write_log($current_order_id, 'VAT number found', $vat_number);
     } else {
-        write_log($order_id, 'No VAT number provided');
+        write_log($current_order_id, 'No VAT number provided');
     }
     
-    $buyer_data = create_buyer_data($order, $api_key, $vat_number);
+    $buyer_data = create_buyer_data($order, $current_order_id, $api_key, $vat_number);
     if (\is_wp_error($buyer_data)) {
         return $buyer_data;
     }
     
-    $seller_data = create_seller_data($order_id);
+    $seller_data = create_seller_data($current_order_id);
     
     $invoice_type = \get_option('szamlazz_hu_invoice_type', 1);
     
@@ -256,7 +256,7 @@ function generate_invoice($order) {
     write_log($order_id, 'Invoice type set to', $invoice_type_name);
     write_log($order_id, 'Invoice language set to', $invoice_language);
     
-    $items_data = build_order_items_data($order);
+    $items_data = build_order_items_data($order, $current_order_id);
     if (\is_wp_error($items_data)) {
         return $items_data;
     }
@@ -272,7 +272,7 @@ function generate_invoice($order) {
         'currency' => $order->currency,
         'language' => $invoice_language,
         'comment' => '',
-        'order_number' => strval($order_id),
+        'order_number' => strval($current_order_id),
         'proforma_number' => '',
         'prepayment_invoice' => 'false',
         'final_invoice' => 'false',
@@ -292,18 +292,17 @@ function generate_invoice($order) {
         'items' => $items_data,
     );
     
-    write_log($order_id, 'Generating invoice via API');
+    write_log($current_order_id, 'Generating invoice via API');
     
-    return generate_invoice_api($order_id, $api_key, $params);
+    return generate_invoice_api($current_order_id, $api_key, $params);
 }
 
 function create_invoice($order, $main_order = null) {
     $order_id = $order->id;
     if ($main_order === null)
         $main_order = $order;
-    $main_order_id = $main_order->id;
     
-    write_log($order_id, 'Invoice creation triggered', 'Order ID', $order_id, 'Main order ID', $main_order_id);
+    write_log($order_id, 'Invoice creation triggered', 'Order ID', $order_id, 'Main order ID', $main_order->id);
     
     init_paths();
     
