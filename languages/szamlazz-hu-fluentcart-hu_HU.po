@@ -1,8 +1,8 @@
 # Copyright (C) 2025 Gábor Angyal
-# This file is distributed under the same license as the Számlázz.hu for FluentCart Integration plugin.
+# This file is distributed under the same license as the Billingo for FluentCart Integration plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Számlázz.hu for FluentCart Integration 0.0.1\n"
+"Project-Id-Version: Billingo for FluentCart Integration 0.0.1\n"
 "Report-Msgid-Bugs-To: https://webshop.tech\n"
 "POT-Creation-Date: 2025-10-29 13:41:00+0000\n"
 "PO-Revision-Date: 2025-10-29 13:41:00+0000\n"
@@ -14,166 +14,166 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: integration-for-szamlazzhu-fluentcart.php
-msgid "Számlázz.hu for FluentCart Settings"
-msgstr "Számlázz.hu for FluentCart Beállítások"
+#: integration-for-billingo-fluentcart.php
+msgid "Billingo for FluentCart Settings"
+msgstr "Billingo for FluentCart Beállítások"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Settings"
 msgstr "Beállítások"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Cache cleared successfully"
 msgstr "A gyorsítótár sikeresen törölve"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Shipping VAT rate applied to all tax rates successfully"
 msgstr "A szállítási áfa mérték sikeresen alkalmazva az összes adómértékre"
 
-#: integration-for-szamlazzhu-fluentcart.php
-msgid "Enter your Számlázz.hu API credentials below."
-msgstr "Add meg a Számlázz.hu API hitelesítési adatokat alább."
+#: integration-for-billingo-fluentcart.php
+msgid "Enter your Billingo API credentials below."
+msgstr "Add meg a Billingo API hitelesítési adatokat alább."
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Agent API Key"
 msgstr "Agent API kulcs"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "What is this?"
 msgstr "Mi ez?"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Shipping VAT Rate"
 msgstr "Szállítási áfa mérték"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Apply to Tax Rates"
 msgstr "Alkalmazás az adómértékekre"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Warning:"
 msgstr "Figyelmeztetés:"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "No tax rates found. Please configure tax rates in FluentCart first."
 msgstr "Nem találhatók adómértékek. Kérlek, először állítsd be az adómértékeket a FluentCart-ban."
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "All tax rates are already set to"
 msgstr "Minden adómérték már be van állítva erre:"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Current shipping VAT rates in use:"
 msgstr "Jelenleg használt szállítási áfa mértékek:"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Invoice Settings"
 msgstr "Számla beállítások"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Invoice Language"
 msgstr "Számla nyelve"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Invoice Type"
 msgstr "Számla típusa"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Paper Invoice"
 msgstr "Papírszámla"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "E-Invoice"
 msgstr "E-számla"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Quantity Unit"
 msgstr "Mennyiségi egység"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Shipping Title"
 msgstr "Szállítás címe"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Magyar (Hungarian)"
 msgstr "Magyar"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "English"
 msgstr "Angol"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Deutsch (German)"
 msgstr "Német"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Italiano (Italian)"
 msgstr "Olasz"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Română (Romanian)"
 msgstr "Román"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Slovenčina (Slovak)"
 msgstr "Szlovák"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Hrvatski (Croatian)"
 msgstr "Horvát"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Français (French)"
 msgstr "Francia"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Español (Spanish)"
 msgstr "Spanyol"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Čeština (Czech)"
 msgstr "Cseh"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Polski (Polish)"
 msgstr "Lengyel"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Cache Management"
 msgstr "Gyorsítótár kezelés"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Current cache size:"
 msgstr "Jelenlegi gyorsítótár méret:"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Clear Cache"
 msgstr "Gyorsítótár törlése"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Clearing the cache will delete all cached PDFs, XMLs, and logs."
 msgstr "A gyorsítótár törlése az összes tárolt PDF-et, XML-t és naplót törölni fogja."
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Settings Saved"
 msgstr "Beállítások mentve"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Save Settings"
 msgstr "Beállítások mentése"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Actions"
 msgstr "Műveletek"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Shipping VAT Settings"
 msgstr "Szállítási ÁFA beállítása"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "Apply Shipping VAT to All Tax Rates"
 msgstr "Szállítási áfa alkalmazása az összes adómértékre"
 
-#: integration-for-szamlazzhu-fluentcart.php
+#: integration-for-billingo-fluentcart.php
 msgid "API Settings"
 msgstr "API beállítások"

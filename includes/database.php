@@ -1,6 +1,6 @@
 <?php
 
-namespace SzamlazzHuFluentCart;
+namespace BillingoFluentCart;
 
 if (!\defined('ABSPATH')) {
     exit;
@@ -8,7 +8,7 @@ if (!\defined('ABSPATH')) {
 
 function create_invoices_table() {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'szamlazzhu_fluentcart_invoices';
+    $table_name = $wpdb->prefix . 'billingo_fluentcart_invoices';
     $charset_collate = $wpdb->get_charset_collate();
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
@@ -27,7 +27,7 @@ function create_invoices_table() {
 
 function save_invoice($order_id, $invoice_number) {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'szamlazzhu_fluentcart_invoices';
+    $table_name = $wpdb->prefix . 'billingo_fluentcart_invoices';
     
     // Direct database insert is necessary for custom table.
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
@@ -43,7 +43,7 @@ function save_invoice($order_id, $invoice_number) {
 
 function get_invoice_number_by_order_id($order_id) {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'szamlazzhu_fluentcart_invoices';
+    $table_name = $wpdb->prefix . 'billingo_fluentcart_invoices';
     
     // Direct database query is necessary for custom table.
     // Response is not cached because data is volatile

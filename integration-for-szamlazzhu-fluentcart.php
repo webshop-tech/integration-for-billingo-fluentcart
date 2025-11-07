@@ -1,18 +1,18 @@
 <?php
 /**
- * Plugin Name: Integration for Számlázz.hu and FluentCart
- * Plugin URI: https://webshop.tech/integration-for-szamlazzhu-fluentcart/
- * Description: Generates invoices on Számlázz.hu for FluentCart orders
+ * Plugin Name: Integration for Billingo and FluentCart
+ * Plugin URI: https://webshop.tech/integration-for-billingo-fluentcart/
+ * Description: Generates invoices on Billingo for FluentCart orders
  * Version: 1.0.0
  * Author: Gábor Angyal
  * Author URI: https://webshop.tech
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: integration-for-szamlazzhu-fluentcart
+ * Text Domain: integration-for-billingo-fluentcart
  * Requires Plugins: fluent-cart
  */
 
-namespace SzamlazzHuFluentCart;
+namespace BillingoFluentCart;
 
 if (!\defined('ABSPATH')) {
     exit;
@@ -27,14 +27,14 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'sett
 use FluentCart\App\Models\Order;
 
 function init_paths() {
-    $suffix = get_option('szamlazz_hu_folder_suffix', '');
+    $suffix = get_option('billingo_fluentcart_folder_suffix', '');
     if (empty($suffix)) {
         $suffix = substr(bin2hex(random_bytes(4)), 0, 8);
-        update_option('szamlazz_hu_folder_suffix', $suffix);
+        update_option('billingo_fluentcart_folder_suffix', $suffix);
     }
     
     $cache_dir = WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'cache';
-    $base_path = $cache_dir . DIRECTORY_SEPARATOR . 'integration-for-szamlazzhu-fluentcart-' . $suffix;
+    $base_path = $cache_dir . DIRECTORY_SEPARATOR . 'integration-for-billingo-fluentcart-' . $suffix;
     
     $required_folders = [
         'logs',
@@ -61,13 +61,13 @@ function init_paths() {
 }
 
 function get_cache_path() {
-    $suffix = get_option('szamlazz_hu_folder_suffix', '');
+    $suffix = get_option('billingo_fluentcart_folder_suffix', '');
     if (empty($suffix)) {
         return null;
     }
     
     $cache_dir = WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'cache';
-    return $cache_dir . DIRECTORY_SEPARATOR . 'integration-for-szamlazzhu-fluentcart-' . $suffix;
+    return $cache_dir . DIRECTORY_SEPARATOR . 'integration-for-billingo-fluentcart-' . $suffix;
 }
 
 function get_cache_size() {
@@ -114,7 +114,7 @@ function clear_cache() {
         $wp_filesystem->rmdir($cache_path);
     }
     
-    delete_option('szamlazz_hu_folder_suffix');
+    delete_option('billingo_fluentcart_folder_suffix');
 }
 
 function get_pdf_path($invoice_number) {
@@ -174,7 +174,7 @@ function get_pdf_path($invoice_number) {
     try {
         init_paths();
         
-        $api_key = \get_option('szamlazz_hu_agent_api_key', '');
+        $api_key = \get_option('billingo_fluentcart_agent_api_key', '');
         
         if (empty($api_key)) {
             return;

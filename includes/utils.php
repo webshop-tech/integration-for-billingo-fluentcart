@@ -1,6 +1,6 @@
 <?php
 
-namespace SzamlazzHuFluentCart;
+namespace BillingoFluentCart;
 
 if (!\defined('ABSPATH')) {
     exit;
@@ -25,7 +25,7 @@ function write_log($order_id, $message, ...$args) {
         'module_type' => 'FluentCart\App\Models\Order',
         'module_id' => $order_id,
         'module_name' => 'order',
-        'title' => 'Számlázz.hu debug info',
+        'title' => 'Billingo debug info',
         'content' => $formatted_message
     ]);
 }

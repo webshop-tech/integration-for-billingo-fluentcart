@@ -1,4 +1,4 @@
-=== Integration for Számlázz.hu and FluentCart ===
+=== Integration for Billingo and FluentCart ===
 Contributors: gaborangyal
 Tags: szamlazz.hu, fluentcart, invoice, magyar, szamlazo
 Requires at least: 6.2
@@ -8,16 +8,16 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically generates invoices on Számlázz.hu for FluentCart orders with VAT validation and multi-language support.
+Automatically generates invoices on Billingo for FluentCart orders with VAT validation and multi-language support.
 
 == Description ==
 
-Integration for Számlázz.hu and FluentCart is a WordPress plugin that seamlessly connects your FluentCart store with Számlázz.hu, automatically generating professional invoices when orders are paid.
+Integration for Billingo and FluentCart is a WordPress plugin that seamlessly connects your FluentCart store with Billingo, automatically generating professional invoices when orders are paid.
 
 = Key Features =
 
 * **Automatic Invoice Generation** - Invoices are automatically created when orders are marked as paid
-* **Download Invoices** - Every receipt download button is overriden with Számlázz.hu invoice download.
+* **Download Invoices** - Every receipt download button is overriden with Billingo invoice download.
 * **Multi-language Support** - Generate invoices in 11 languages: Hungarian, English, German, Italian, Romanian, Slovak, Croatian, French, Spanish, Czech, Polish
 * **Invoice Types** - Choose between Paper Invoice and E-Invoice formats
 * **VAT Number Validation** - Automatically fetches company data from NAV (Hungarian Tax Authority) when VAT number is provided
@@ -31,14 +31,14 @@ Integration for Számlázz.hu and FluentCart is a WordPress plugin that seamless
 
 * WordPress 5.0 or higher
 * FluentCart plugin installed and activated
-* Active Számlázz.hu account with Agent API Key
+* Active Billingo account with Agent API Key
 * PHP 7.4 or higher
 
 = Important Warnings =
 
 **Before using this plugin in production:**
 
-1. **Enable Test Mode** in both FluentCart and Számlázz.hu
+1. **Enable Test Mode** in both FluentCart and Billingo
 2. **Generate test invoices** to verify everything works correctly
 3. **Consult with your accountant** to ensure the plugin meets your accounting requirements
 4. **Review all generated invoices** for accuracy
@@ -48,7 +48,7 @@ Integration for Számlázz.hu and FluentCart is a WordPress plugin that seamless
 
 = API Usage Costs =
 
-**Számlázz.hu charges for API usage.** This plugin uses the Számlázz.hu Agent API to generate invoices automatically, which is a paid service. Review the [Számlázz.hu pricing](https://www.szamlazz.hu/egyedi-megoldasok/tomeges-szamlageneralas/) before enabling automatic invoice generation.
+**Billingo charges for API usage.** This plugin uses the Billingo Agent API to generate invoices automatically, which is a paid service. Review the [Billingo pricing](https://www.szamlazz.hu/egyedi-megoldasok/tomeges-szamlageneralas/) before enabling automatic invoice generation.
 
 = Limitations =
 
@@ -69,8 +69,8 @@ The interface language follows your WordPress language settings.
 
 = Configuration =
 
-1. Navigate to **Settings > Számlázz.hu**
-2. Enter your Számlázz.hu Agent API Key ([How to get API key](https://tudastar.szamlazz.hu/gyik/kulcs))
+1. Navigate to **Settings > Billingo**
+2. Enter your Billingo Agent API Key ([How to get API key](https://tudastar.szamlazz.hu/gyik/kulcs))
 3. Configure invoice settings:
    * Invoice Language (default: Hungarian)
    * Invoice Type (Paper Invoice or E-Invoice)
@@ -107,8 +107,8 @@ Enable `WP_DEBUG` to see debug information on each orders activity log.
 
 = Support =
 
-For general questions, please visit the [plugin website](https://webshop.tech/integration-for-szamlazzhu-fluentcart/).
-Bug reports and feature requests can be submitted on the project's [GitHub](https://github.com/agabor/integration-for-szamlazzhu-fluentcart) page.
+For general questions, please visit the [plugin website](https://webshop.tech/integration-for-billingo-fluentcart/).
+Bug reports and feature requests can be submitted on the project's [GitHub](https://github.com/agabor/integration-for-billingo-fluentcart) page.
 
 = Contributing =
 

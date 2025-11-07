@@ -1,6 +1,6 @@
 <?php
 
-namespace SzamlazzHuFluentCart;
+namespace BillingoFluentCart;
 
 if (!\defined('ABSPATH')) {
     exit;
@@ -127,7 +127,7 @@ function build_order_items_data($order, $current_order_id) {
         return create_error($current_order_id, 'no_items', "No items found for order " . absint($order_id));
     }
     
-    $quantity_unit = \get_option('szamlazz_hu_quantity_unit', 'db');
+    $quantity_unit = \get_option('billingo_fluentcart_quantity_unit', 'db');
     
     write_log($current_order_id, 'Building order items', 'Item count', $items->count());
     
@@ -178,13 +178,13 @@ function build_order_items_data($order, $current_order_id) {
     }
     
     if ($order->shipping_total != 0) {
-        $shipping_title = \get_option('szamlazz_hu_shipping_title', 'Szállítás');
+        $shipping_title = \get_option('billingo_fluentcart_shipping_title', 'Szállítás');
         $shipping_net = $order->shipping_total / 100;
         $shipping_vat_amount = 0;
         $shipping_vat_rate = "0";
         
         if ($order->tax_behavior != 0) {
-            $shipping_vat = \get_option('szamlazz_hu_shipping_vat', 27);
+            $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', 27);
             $shipping_vat_rate = strval($shipping_vat);
             $shipping_vat_amount = $shipping_net * ($shipping_vat / 100);
         }
@@ -213,7 +213,7 @@ function log_activity($order_id, $success, $message) {
         'module_type' => 'FluentCart\App\Models\Order',
         'module_id' => $order_id,
         'module_name' => 'order',
-        'title' => $success ? 'Számlázz.hu invoice successfully generated' : 'Számlázz.hu invoice generation failed',
+        'title' => $success ? 'Billingo invoice successfully generated' : 'Billingo invoice generation failed',
         'content' => $message
     ]);
 }
@@ -223,7 +223,7 @@ function generate_invoice($order, $current_order_id) {
     
     write_log($current_order_id, 'Starting invoice generation', 'Currency', $order->currency);
     
-    $api_key = \get_option('szamlazz_hu_agent_api_key', '');
+    $api_key = \get_option('billingo_fluentcart_agent_api_key', '');
     
     if (empty($api_key)) {
         return create_error($current_order_id, 'api_error', 'API Key not configured.');
@@ -246,9 +246,9 @@ function generate_invoice($order, $current_order_id) {
     
     $seller_data = create_seller_data($current_order_id);
     
-    $invoice_type = \get_option('szamlazz_hu_invoice_type', 1);
+    $invoice_type = \get_option('billingo_fluentcart_invoice_type', 1);
     
-    $invoice_language = \get_option('szamlazz_hu_invoice_language', 'hu');
+    $invoice_language = \get_option('billingo_fluentcart_invoice_language', 'hu');
     
     $invoice_type_name = ($invoice_type == 2) ? 'E-Invoice' : 'Paper Invoice';
     write_log($order_id, 'Invoice type set to', $invoice_type_name);
@@ -328,7 +328,7 @@ function create_invoice($order, $main_order = null) {
         
         save_invoice($order_id, $invoice_number);
         
-        $message = sprintf('Számlázz.hu invoice created: %s', $invoice_number);
+        $message = sprintf('Billingo invoice created: %s', $invoice_number);
         log_activity($order_id, true, $message);
     } else {
         $error_message = 'Failed to generate invoice: Unknown error';

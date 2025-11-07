@@ -1,6 +1,6 @@
-# Integration for Számlázz.hu and FluentCart
+# Integration for Billingo and FluentCart
 
-A WordPress plugin that automatically generates invoices on Számlázz.hu for FluentCart orders.
+A WordPress plugin that automatically generates invoices on Billingo for FluentCart orders.
 
 ## Features
 
@@ -17,14 +17,14 @@ A WordPress plugin that automatically generates invoices on Számlázz.hu for Fl
 
 - WordPress 5.0 or higher
 - FluentCart plugin installed and activated
-- Active Számlázz.hu account with Agent API Key
+- Active Billingo account with Agent API Key
 - PHP 7.4 or higher
 
 ## ⚠️ Important Warning
 
 **Before using this plugin in production:**
 
-1. **Enable Test Mode** in both FluentCart and Számlázz.hu
+1. **Enable Test Mode** in both FluentCart and Billingo
 2. **Generate test invoices** to verify everything works correctly
 3. **Consult with your accountant** to ensure the plugin meets your accounting requirements
 4. **Review all generated invoices** for accuracy (amounts, VAT calculations, company data)
@@ -35,11 +35,11 @@ A WordPress plugin that automatically generates invoices on Számlázz.hu for Fl
 
 ### 💰 API Usage Costs
 
-**Számlázz.hu charges for API usage.** This plugin uses the Számlázz.hu Agent API to generate invoices automatically, which is a paid service.
+**Billingo charges for API usage.** This plugin uses the Billingo Agent API to generate invoices automatically, which is a paid service.
 
-- Review the [Számlázz.hu pricing for bulk invoice generation](https://www.szamlazz.hu/egyedi-megoldasok/tomeges-szamlageneralas/)
+- Review the [Billingo pricing for bulk invoice generation](https://www.szamlazz.hu/egyedi-megoldasok/tomeges-szamlageneralas/)
 - Understand the costs before enabling automatic invoice generation
-- Each invoice generated through the API will be charged according to Számlázz.hu's pricing
+- Each invoice generated through the API will be charged according to Billingo's pricing
 - Consider your order volume and calculate expected monthly costs
 
 ## Installation
@@ -47,16 +47,16 @@ A WordPress plugin that automatically generates invoices on Számlázz.hu for Fl
 1. Download the plugin files
 2. Upload to your WordPress `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Go to **Settings > Számlázz.hu** to configure the plugin
+4. Go to **Settings > Billingo** to configure the plugin
 
 ## Configuration
 
 ### 1. API Settings
 
-Navigate to **Settings > Számlázz.hu** in your WordPress admin panel.
+Navigate to **Settings > Billingo** in your WordPress admin panel.
 
 #### Agent API Key
-- Enter your Számlázz.hu Agent API Key
+- Enter your Billingo Agent API Key
 - Click "[What is this?](https://tudastar.szamlazz.hu/gyik/kulcs)" for instructions on how to obtain your API key
 - The key is stored securely and displayed as a password field
 
@@ -107,7 +107,7 @@ Once configured, the plugin automatically generates invoices when:
 2. A payment status changes to paid
 
 The invoice will be:
-- Generated on Számlázz.hu with your configured settings
+- Generated on Billingo with your configured settings
 - Stored in the database with order reference
 - Available for download
 
@@ -199,7 +199,7 @@ Please be aware of the following limitations:
 ### Cache Issues
 
 If you experience issues with cached files:
-1. Go to **Settings > Számlázz.hu**
+1. Go to **Settings > Billingo**
 2. Scroll to "Cache Management"
 3. Click "Clear Cache"
 4. Test invoice generation again
@@ -215,7 +215,7 @@ GPL v2 or later
 ## Credits
 
 - **Author**: Gábor Angyal
-- **Plugin URI**: [https://webshop.tech/integration-for-szamlazzhu-fluentcart](https://webshop.tech/integration-for-szamlazzhu-fluentcart)
+- **Plugin URI**: [https://webshop.tech/integration-for-billingo-fluentcart](https://webshop.tech/integration-for-billingo-fluentcart)
 - **Version**: 0.0.1
 
 ## Changelog

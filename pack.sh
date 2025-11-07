@@ -1,9 +1,9 @@
-rm integration-for-szamlazzhu-fluentcart.zip
+rm integration-for-billingo-fluentcart.zip
 cd ..
-zip integration-for-szamlazzhu-fluentcart/integration-for-szamlazzhu-fluentcart.zip -r integration-for-szamlazzhu-fluentcart \
-   --exclude="integration-for-szamlazzhu-fluentcart/.git/*" \
-   --exclude="integration-for-szamlazzhu-fluentcart/tests/*" \
-   --exclude="integration-for-szamlazzhu-fluentcart/*.zip" \
-   --exclude="integration-for-szamlazzhu-fluentcart/*.md" \
-   --exclude="integration-for-szamlazzhu-fluentcart/*.sh"
-cd integration-for-szamlazzhu-fluentcart
+zip integration-for-billingo-fluentcart/integration-for-billingo-fluentcart.zip -r integration-for-billingo-fluentcart \
+   --exclude="integration-for-billingo-fluentcart/.git/*" \
+   --exclude="integration-for-billingo-fluentcart/tests/*" \
+   --exclude="integration-for-billingo-fluentcart/*.zip" \
+   --exclude="integration-for-billingo-fluentcart/*.md" \
+   --exclude="integration-for-billingo-fluentcart/*.sh"
+cd integration-for-billingo-fluentcart

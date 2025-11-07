@@ -1,6 +1,6 @@
 <?php
 
-namespace SzamlazzHuFluentCart;
+namespace BillingoFluentCart;
 
 if (!\defined('ABSPATH')) {
     exit;
