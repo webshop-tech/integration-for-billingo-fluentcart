@@ -197,66 +197,74 @@ function get_pdf_path($invoice_number) {
 }, 10, 1);
 
 \add_action('init', function() {
-    if (isset($_GET['fluent-cart']) && $_GET['fluent-cart'] === 'receipt') {
-        // Your custom logic here
-        $order_hash = isset($_GET['order_hash']) ? \sanitize_text_field(\wp_unslash($_GET['order_hash'])) : '';
-        $download = isset($_GET['download']) ? \sanitize_text_field(\wp_unslash($_GET['download'])) : '';
-        if ($download !== '1')
-            return;
-
-        $order_id = Order::where('uuid', $order_hash)->value('id');
+    // Overriding FluentCart's invoice generation. Can not add a nonce here.
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    $get_params = $_GET;
     
-        try {
-            // Initialize paths and ensure folders exist
-            init_paths();
-            
-            // Get API key from settings
-            $api_key = \get_option('szamlazz_hu_agent_api_key', '');
-            
-            if (empty($api_key)) {
-                return;
-            }
-            
-            // Check if invoice exists in database
-            $invoice_number = get_invoice_number_by_order_id($order_id);
-            
-            if ($invoice_number) {
-                // Check if PDF exists in cache
-                $cached_pdf_path = get_pdf_path($invoice_number);
-                
-                if ($cached_pdf_path && \file_exists($cached_pdf_path)) {
-                    // Serve from cache
-                    serve_pdf_download($cached_pdf_path);
-                }
-                
-                // PDF not in cache, fetch from API using WordPress HTTP API
-                $result = fetch_invoice_pdf($order_id, $api_key, $invoice_number);
-                
-                // Check if fetch was successful
-                if (!is_wp_error($result) && isset($result['success']) && $result['success']) {
-                    // Save PDF to cache
-                    $cache_path = get_cache_path();
-                    if ($cache_path) {
-                        $pdf_dir = $cache_path . DIRECTORY_SEPARATOR . 'pdf';
-                        $pdf_filename = $pdf_dir . DIRECTORY_SEPARATOR . $result['filename'];
-                        
-                        // Initialize WP_Filesystem
-                        require_once(ABSPATH . 'wp-admin/includes/file.php');
-                        WP_Filesystem();
-                        global $wp_filesystem;
-                        
-                        // Save PDF file
-                        $wp_filesystem->put_contents($pdf_filename, $result['pdf_data'], FS_CHMOD_FILE);
-                    }
-                    
-                    // Serve PDF to user
-                    serve_pdf_download(null, $result['pdf_data'], $result['filename']);
-                }
-            }
-            
-        } catch (\Exception $e) {
-            log_activity($order_id, false, 'Download error: ' . $e->getMessage());
+    if (!isset($get_params['fluent-cart']) || $get_params['fluent-cart'] !== 'receipt') {
+        return;
+    }
+    
+    // Extract and sanitize GET parameters
+    $order_hash = isset($get_params['order_hash']) ? \sanitize_text_field(\wp_unslash($get_params['order_hash'])) : '';
+    $download = isset($get_params['download']) ? \sanitize_text_field(\wp_unslash($get_params['download'])) : '';
+    
+    if ($download !== '1') {
+        return;
+    }
+    
+    $order_id = Order::where('uuid', $order_hash)->value('id');
+    
+    try {
+        // Initialize paths and ensure folders exist
+        init_paths();
+        
+        // Get API key from settings
+        $api_key = \get_option('szamlazz_hu_agent_api_key', '');
+        
+        if (empty($api_key)) {
             return;
         }
+        
+        // Check if invoice exists in database
+        $invoice_number = get_invoice_number_by_order_id($order_id);
+        
+        if ($invoice_number) {
+            // Check if PDF exists in cache
+            $cached_pdf_path = get_pdf_path($invoice_number);
+            
+            if ($cached_pdf_path && \file_exists($cached_pdf_path)) {
+                // Serve from cache
+                serve_pdf_download($cached_pdf_path);
+            }
+            
+            // PDF not in cache, fetch from API using WordPress HTTP API
+            $result = fetch_invoice_pdf($order_id, $api_key, $invoice_number);
+            
+            // Check if fetch was successful
+            if (!is_wp_error($result) && isset($result['success']) && $result['success']) {
+                // Save PDF to cache
+                $cache_path = get_cache_path();
+                if ($cache_path) {
+                    $pdf_dir = $cache_path . DIRECTORY_SEPARATOR . 'pdf';
+                    $pdf_filename = $pdf_dir . DIRECTORY_SEPARATOR . $result['filename'];
+                    
+                    // Initialize WP_Filesystem
+                    require_once(ABSPATH . 'wp-admin/includes/file.php');
+                    WP_Filesystem();
+                    global $wp_filesystem;
+                    
+                    // Save PDF file
+                    $wp_filesystem->put_contents($pdf_filename, $result['pdf_data'], FS_CHMOD_FILE);
+                }
+                
+                // Serve PDF to user
+                serve_pdf_download(null, $result['pdf_data'], $result['filename']);
+            }
+        }
+        
+    } catch (\Exception $e) {
+        log_activity($order_id, false, 'Download error: ' . $e->getMessage());
+        return;
     }
 }, 1);
