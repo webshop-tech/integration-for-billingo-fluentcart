@@ -1,20 +1,11 @@
 <?php
-/**
- * Database functions for Számlázz.hu invoice table
- * 
- * @package SzamlazzHuFluentCart
- */
 
 namespace SzamlazzHuFluentCart;
 
-// Exit if accessed directly
 if (!\defined('ABSPATH')) {
     exit;
 }
 
-/**
- * Create database table on plugin activation
- */
 function create_invoices_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'szamlazz_invoices';
@@ -24,7 +15,6 @@ function create_invoices_table() {
         id bigint(20) NOT NULL AUTO_INCREMENT,
         order_id bigint(20) NOT NULL,
         invoice_number varchar(255) NOT NULL,
-        invoice_id varchar(255) DEFAULT NULL,
         created_at datetime DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY  (id),
         UNIQUE KEY order_id (order_id),
@@ -35,27 +25,9 @@ function create_invoices_table() {
     dbDelta($sql);
 }
 
-/**
- * Save invoice data to database
- * 
- * @param int $order_id The order ID
- * @param object $result The invoice generation result (can be SzamlaAgentResponse or simple object)
- * @return int|false The number of rows inserted, or false on error
- */
-function save_invoice($order_id, $result) {
+function save_invoice($order_id, $invoice_number) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'szamlazz_invoices';
-    
-    // Support both old SzamlaAgent response and new API response
-    if (method_exists($result, 'getDocumentNumber')) {
-        // Old SzamlaAgent format
-        $invoice_number = $result->getDocumentNumber();
-        $invoice_id = $result->getDataObj()->invoiceId ?? null;
-    } else {
-        // New API format
-        $invoice_number = $result->invoice_number ?? null;
-        $invoice_id = null;
-    }
     
     // Direct database insert is necessary for custom table.
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
@@ -63,10 +35,9 @@ function save_invoice($order_id, $result) {
         $table_name,
         [
             'order_id' => $order_id,
-            'invoice_number' => $invoice_number,
-            'invoice_id' => $invoice_id
+            'invoice_number' => $invoice_number
         ],
-        ['%d', '%s', '%s']
+        ['%d', '%s']
     );
 }
 

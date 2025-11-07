@@ -413,12 +413,7 @@ function create_invoice($order, $main_order = null) {
         
         write_log($order_id, 'Invoice generated successfully', 'Invoice number', $invoice_number);
         
-        // Save to database - create a compatible result object
-        $result_obj = (object) array(
-            'invoice_number' => $invoice_number,
-            'pdf_data' => $result['pdf_data'] ?? null,
-        );
-        save_invoice($order_id, $result_obj);
+        save_invoice($order_id, $invoice_number);
         
         // Log success
         $message = sprintf('Számlázz.hu invoice created: %s', $invoice_number);
