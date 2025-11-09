@@ -163,6 +163,39 @@ function download_document_pdf($order_id, $api_key, $document_id) {
     );
 }
 
+function fetch_invoice_pdf($order_id, $api_key, $invoice_number) {
+    // First, get the document by vendor_id (which is the order_id)
+    $endpoint = '/documents/vendor/' . urlencode((string)$order_id);
+    $document = make_billingo_request($order_id, $api_key, $endpoint, 'GET');
+    
+    if (\is_wp_error($document)) {
+        return $document;
+    }
+    
+    if (!isset($document['id'])) {
+        return create_error($order_id, 'document_not_found', 'Document not found for order ID: ' . $order_id);
+    }
+    
+    $document_id = $document['id'];
+    
+    // Now download the PDF using the document ID
+    $pdf_result = download_document_pdf($order_id, $api_key, $document_id);
+    
+    if (\is_wp_error($pdf_result)) {
+        return $pdf_result;
+    }
+    
+    // Generate a safe filename
+    $safe_invoice_number = preg_replace('/[^a-zA-Z0-9_-]/', '_', $invoice_number);
+    $filename = 'invoice_' . $safe_invoice_number . '.pdf';
+    
+    return array(
+        'success' => true,
+        'pdf_data' => $pdf_result['pdf_data'],
+        'filename' => $filename,
+    );
+}
+
 /**
  * Map old payment method to new Billingo v3 enum
  */
