@@ -14,6 +14,46 @@ Automatically generates invoices on Billingo for FluentCart orders with VAT vali
 
 Integration for Billingo and FluentCart is a WordPress plugin that seamlessly connects your FluentCart store with Billingo, automatically generating professional invoices when orders are paid.
 
+== External Services ==
+
+This plugin relies on the Billingo invoice generation service to create and manage invoices for FluentCart orders.
+
+= Service Information =
+
+* Service Provider: Billingo (billingo.hu)
+* Service Purpose: The plugin connects to Billingo's API to automatically generate invoices, fetch taxpayer information from the Hungarian Tax Authority (NAV), and retrieve generated invoice PDFs.
+
+= Data Transmission =
+
+The plugin sends the following data to https://api.billingo.hu/v3 when:
+
+**Generating Invoices** (when an order is marked as paid):
+
+* Your Billingo API Key
+* Order information: order number, dates, amounts, currency
+* Buyer information: name, email, address, postal code, city, country
+* Buyer's VAT/tax number (if provided)
+* Product details: names, quantities, prices, VAT rates
+* Shipping information: title, amount, VAT rate
+* Invoice settings: language, type (paper/electronic), payment method
+
+**Fetching Taxpayer Data** (when a Hungarian VAT number is provided):
+
+* Your Billingo API Key
+* The taxpayer's tax identification number (in format 12345678-1-23)
+
+**Downloading Invoice PDFs** (when users click to download invoices):
+
+* Your Billingo API Key
+* The document ID
+
+= Legal Information =
+
+* Billingo Terms of Service: https://www.billingo.hu/felhasznalasi-feltetelek
+* Billingo Privacy Policy: https://www.billingo.hu/adatkezelesi-tajekoztato
+
+**Important:** By using this plugin, you agree to transmit your store and customer data to Billingo. Ensure you have proper consent from your customers and comply with applicable data protection regulations (GDPR, etc.).
+
 = Key Features =
 
 * **Automatic Invoice Generation** - Invoices are automatically created when orders are marked as paid
