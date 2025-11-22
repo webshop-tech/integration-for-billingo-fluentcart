@@ -114,7 +114,7 @@ const INVOICE_TYPE_E_INVOICE = 2;
         function() {
             $value = \get_option('billingo_fluentcart_agent_api_key', '');
             echo '<input type="password" name="billingo_fluentcart_agent_api_key" value="' . \esc_attr($value) . '" class="regular-text" autocomplete="off" />';
-            echo '<p class="description"><a href="https://tudastar.szamlazz.hu/gyik/kulcs" target="_blank" rel="noopener noreferrer">' . \esc_html__('What is this?', 'integration-for-billingo-fluentcart') . '</a></p>';
+            echo '<p class="description"><a href="https://support.billingo.hu/content/951124273" target="_blank" rel="noopener noreferrer">' . \esc_html__('What is this?', 'integration-for-billingo-fluentcart') . '</a></p>';
         },
         'integration-for-billingo-fluentcart',
         'billingo_fluentcart_api_section'

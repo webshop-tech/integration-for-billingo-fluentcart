@@ -37,7 +37,7 @@ A WordPress plugin that automatically generates invoices on Billingo for FluentC
 
 **Billingo charges for API usage.** This plugin uses the Billingo Agent API to generate invoices automatically, which is a paid service.
 
-- Review the [Billingo pricing for bulk invoice generation](https://www.szamlazz.hu/egyedi-megoldasok/tomeges-szamlageneralas/)
+- Review the [Billingo pricing for bulk invoice generation](https://www.billingo.hu/szolgaltatasok/api)
 - Understand the costs before enabling automatic invoice generation
 - Each invoice generated through the API will be charged according to Billingo's pricing
 - Consider your order volume and calculate expected monthly costs
@@ -57,7 +57,7 @@ Navigate to **Settings > Billingo** in your WordPress admin panel.
 
 #### Agent API Key
 - Enter your Billingo Agent API Key
-- Click "[What is this?](https://tudastar.szamlazz.hu/gyik/kulcs)" for instructions on how to obtain your API key
+- Click "[What is this?](https://support.billingo.hu/content/951124273)" for instructions on how to obtain your API key
 - The key is stored securely and displayed as a password field
 
 ### 2. Invoice Settings
@@ -179,7 +179,7 @@ Please be aware of the following limitations:
 - This may cause a small difference between what the customer pays, and what appears on the invoice.
 
 ### Instant Payment Notification
-- [Instant Payment Notification (IPN)](https://tudastar.szamlazz.hu/gyik/mi-az-ipn) is not yet supported.
+- Instant Payment Notification (IPN) is not yet supported.
 
 ## Troubleshooting
 

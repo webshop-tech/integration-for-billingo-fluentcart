@@ -20,7 +20,7 @@ fi
 
 # Files and folders to copy
 FILES_TO_COPY=(
-    "integration-for-szamlazzhu-fluentcart.php"
+    "integration-for-billingo-fluentcart.php"
     "LICENSE"
     "readme.txt"
 )

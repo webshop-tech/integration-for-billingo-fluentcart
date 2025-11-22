@@ -1,6 +1,6 @@
 === Integration for Billingo and FluentCart ===
 Contributors: gaborangyal
-Tags: szamlazz.hu, fluentcart, invoice, magyar, szamlazo
+Tags: billingo, fluentcart, invoice, magyar, szamlazo
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -88,7 +88,7 @@ The plugin sends the following data to https://api.billingo.hu/v3 when:
 
 = API Usage Costs =
 
-**Billingo charges for API usage.** This plugin uses the Billingo Agent API to generate invoices automatically, which is a paid service. Review the [Billingo pricing](https://www.szamlazz.hu/egyedi-megoldasok/tomeges-szamlageneralas/) before enabling automatic invoice generation.
+**Billingo charges for API usage.** This plugin uses the Billingo Agent API to generate invoices automatically, which is a paid service. Review the [Billingo pricing](https://www.billingo.hu/szolgaltatasok/api) before enabling automatic invoice generation.
 
 = Limitations =
 
@@ -110,7 +110,7 @@ The interface language follows your WordPress language settings.
 = Configuration =
 
 1. Navigate to **Settings > Billingo**
-2. Enter your Billingo Agent API Key ([How to get API key](https://tudastar.szamlazz.hu/gyik/kulcs))
+2. Enter your Billingo Agent API Key ([How to get API key](https://support.billingo.hu/content/951124273))
 3. Configure invoice settings:
    * Invoice Language (default: Hungarian)
    * Invoice Type (Paper Invoice or E-Invoice)
