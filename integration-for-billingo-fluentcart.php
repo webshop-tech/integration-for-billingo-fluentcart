@@ -153,23 +153,23 @@ function get_pdf_path($invoice_number) {
     create_invoice($order, $main_order);
 }, 10, 1);
 
-\add_action('init', function() {
-    // Overriding FluentCart's invoice generation. Can not add a nonce here.
-    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-    $get_params = $_GET;
-    
-    if (!isset($get_params['fluent-cart']) || $get_params['fluent-cart'] !== 'receipt') {
+\add_action('fluent_cart/before_render_redirect_page', function($data) {
+    if (!isset($data['is_receipt']) || !$data['is_receipt']) {
         return;
     }
     
-    $order_hash = isset($get_params['order_hash']) ? \sanitize_text_field(\wp_unslash($get_params['order_hash'])) : '';
-    $download = isset($get_params['download']) ? \sanitize_text_field(\wp_unslash($get_params['download'])) : '';
     
-    if ($download !== '1') {
+    if (!isset($data['order_hash'])) {
         return;
     }
+
+    $order_hash = $data['order_hash'];
     
     $order_id = Order::where('uuid', $order_hash)->value('id');
+
+    if(!is_numeric($order_id)) {
+        return;
+    }
     
     try {
         init_paths();
