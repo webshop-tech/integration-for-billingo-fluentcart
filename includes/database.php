@@ -2,9 +2,7 @@
 
 namespace BillingoFluentCart;
 
-if (!\defined('ABSPATH')) {
-    exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function create_invoices_table() {
     global $wpdb;

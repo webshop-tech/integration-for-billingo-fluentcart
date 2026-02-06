@@ -2,9 +2,7 @@
 
 namespace BillingoFluentCart;
 
-if (!\defined('ABSPATH')) {
-    exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Make a generic request to the Billingo v3 API

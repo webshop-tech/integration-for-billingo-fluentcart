@@ -4,9 +4,7 @@ namespace BillingoFluentCart;
 
 use FluentCart\App\Models\TaxRate;
 
-if (!\defined('ABSPATH')) {
-    exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 const LANGUAGE_HU = 'hu';
 const LANGUAGE_EN = 'en';

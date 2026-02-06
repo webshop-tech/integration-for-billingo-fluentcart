@@ -2,9 +2,7 @@
 
 namespace BillingoFluentCart;
 
-if (!\defined('ABSPATH')) {
-    exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 use FluentCart\App\Models\Activity;
 use FluentCart\App\Models\Cart;

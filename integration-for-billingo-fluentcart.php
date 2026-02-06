@@ -14,9 +14,7 @@
 
 namespace BillingoFluentCart;
 
-if (!\defined('ABSPATH')) {
-    exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 require __DIR__ . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'utils.php';
 require __DIR__ . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'database.php';
