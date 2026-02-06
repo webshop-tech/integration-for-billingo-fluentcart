@@ -2,6 +2,8 @@ rm integration-for-billingo-fluentcart.zip
 cd ..
 zip integration-for-billingo-fluentcart/integration-for-billingo-fluentcart.zip -r integration-for-billingo-fluentcart \
    --exclude="integration-for-billingo-fluentcart/.git/*" \
+   --exclude="integration-for-billingo-fluentcart/.idea/*" \
+   --exclude="integration-for-billingo-fluentcart/.DS_Store" \
    --exclude="integration-for-billingo-fluentcart/.env" \
    --exclude="integration-for-billingo-fluentcart/.gitignore" \
    --exclude="integration-for-billingo-fluentcart/tests/*" \
