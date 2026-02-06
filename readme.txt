@@ -25,10 +25,18 @@ This plugin relies on the Billingo invoice generation service to create and mana
 
 = Data Transmission =
 
-The plugin sends the following data to https://api.billingo.hu/v3 when:
+The plugin sends the following data to https://api.billingo.hu/v3:
 
 **Generating Invoices** (when an order is marked as paid):
 
+Calls these endpoints:
+* `GET /utils/check-tax-number/{tax_number}` - Validates taxpayer data
+* `GET /partners?query={tax_number}` - Searches for existing partners by tax number
+* `POST /partners` - Creates new partner if not found
+* `GET /document-blocks?type=invoice` - Retrieves available invoice pads
+* `POST /documents` - Creates the invoice document
+
+Data transmitted:
 * Your Billingo API Key
 * Order information: order number, dates, amounts, currency
 * Buyer information: name, email, address, postal code, city, country
@@ -39,13 +47,22 @@ The plugin sends the following data to https://api.billingo.hu/v3 when:
 
 **Fetching Taxpayer Data** (when a Hungarian VAT number is provided):
 
+Calls these endpoints:
+* `GET /utils/check-tax-number/{tax_number}` - Validates Hungarian tax identification number
+
+Data transmitted:
 * Your Billingo API Key
 * The taxpayer's tax identification number (in format 12345678-1-23)
 
 **Downloading Invoice PDFs** (when users click to download invoices):
 
+Calls these endpoints:
+* `GET /documents/vendor/{order_id}` - Retrieves document by order ID
+* `GET /documents/{document_id}/download` - Downloads the invoice PDF
+
+Data transmitted:
 * Your Billingo API Key
-* The document ID
+* The order ID and document ID
 
 = Legal Information =
 
