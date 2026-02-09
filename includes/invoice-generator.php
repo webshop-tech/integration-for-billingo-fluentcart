@@ -44,8 +44,10 @@ function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $bi
     if (!$billing) {
         return create_error($current_order_id, 'no_billing_address', "No billing address found for order " . absint($order_id));
     }
-    
-    $buyer_name = $billing_company_name ?? $billing->name;
+
+    $buyer_name = (isset($billing_company_name) && trim($billing_company_name) !== '')
+        ? $billing_company_name
+        : $billing->name;
     $buyer_postcode = $billing->postcode;
     $buyer_city = $billing->city;
     $buyer_address = $billing->address_1 . ($billing->address_2 ? ' ' . $billing->address_2 : '');
