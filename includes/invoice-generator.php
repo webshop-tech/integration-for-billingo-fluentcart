@@ -171,62 +171,72 @@ function build_order_items_data($order, $current_order_id) {
     
     foreach ($items as $order_item) {
         $taxRate = "0";
-        
+        $tax_amount = 0;
+
         if ($order->tax_behavior != 0) {
             if (isset($order_item->line_meta['tax_config']['rates'][0]['rate'])) {
                 $taxRate = $order_item->line_meta['tax_config']['rates'][0]['rate'];
             }
+            $tax_amount = $order_item->tax_amount / 100;
         }
         
         $net_price = $order_item->line_total / 100;
-        $unit_price = $order_item->unit_price / 100;
-        
+        $unit_price = $net_price / $order_item->quantity;
+        $gross_amount = $net_price + $tax_amount;
+
         $items_data[] = array(
             'name' => $order_item->title,
             'quantity' => $order_item->quantity,
             'unit' => $quantity_unit,
             'unit_price' => $unit_price,
             'vat_rate' => $taxRate,
+            'net_price' => $net_price,
+            'vat_amount' => $tax_amount,
+            'gross_amount' => $gross_amount,
         );
-        
+
         write_log(
-            $current_order_id, 
-            'Item', 
-            $order_item->title, 
-            'Qty', 
-            $order_item->quantity, 
-            'Unit price', 
+            $current_order_id,
+            'Item',
+            $order_item->title,
+            'Qty',
+            $order_item->quantity,
+            'Unit price',
             $unit_price,
-            'Tax rate', 
-            $taxRate . '%'
+            'Tax rate',
+            $taxRate . '%',
+            'Net',
+            $net_price,
+            'VAT',
+            $tax_amount,
+            'Gross',
+            $gross_amount
         );
     }
-    
+
     if ($order->shipping_total != 0) {
         $shipping_title = \get_option('billingo_fluentcart_shipping_title', 'Szállítás');
         $shipping_net = $order->shipping_total / 100;
+        $shipping_vat_amount = 0;
         $shipping_vat_rate = "0";
-        
+
         if ($order->tax_behavior != 0) {
             $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', 27);
             $shipping_vat_rate = strval($shipping_vat);
+            $shipping_vat_amount = $shipping_net * ($shipping_vat / 100);
         }
-        
+
+        $shipping_gross = $shipping_net + $shipping_vat_amount;
+
         $items_data[] = array(
             'name' => $shipping_title,
             'quantity' => 1,
             'unit' => 'db',
             'unit_price' => $shipping_net,
             'vat_rate' => $shipping_vat_rate,
-        );
-        
-        write_log(
-            $current_order_id,
-            'Shipping item added',
-            'Price',
-            $shipping_net,
-            'VAT rate',
-            $shipping_vat_rate . '%'
+            'net_price' => $shipping_net,
+            'vat_amount' => $shipping_vat_amount,
+            'gross_amount' => $shipping_gross,
         );
     }
     
