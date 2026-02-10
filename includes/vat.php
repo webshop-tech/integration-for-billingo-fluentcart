@@ -23,6 +23,47 @@ function replace_eu_vat_header($content) {
     );
 }
 
+function validateVatNumberWithApi($vatNumber): array
+{
+    $api_key = \get_option('billingo_fluentcart_agent_api_key', '');
+    
+    if (empty($api_key)) {
+        return array(
+            'valid' => false,
+            'message' => __('API key not configured', 'integration-for-billingo-fluentcart'),
+        );
+    }
+
+    $result = check_tax_number_api(0, $api_key, $vatNumber);
+    
+    if (\is_wp_error($result)) {
+        return array(
+            'valid' => false,
+            'message' => $result->get_error_message(),
+        );
+    }
+    
+    if (isset($result['error'])) {
+        return array(
+            'valid' => false,
+            'message' => $result['error']['message'] ?? __('Tax number validation failed', 'integration-for-billingo-fluentcart'),
+        );
+    }
+    
+    if (isset($result['tax_number'])) {
+        return array(
+            'valid' => true,
+            'tax_number' => $result['tax_number'],
+            'message' => $result['result'] ?? __('Valid tax number', 'integration-for-billingo-fluentcart'),
+        );
+    }
+    
+    return array(
+        'valid' => false,
+        'message' => __('Invalid tax number', 'integration-for-billingo-fluentcart'),
+    );
+}
+
 function handleVatValidation() {
     $cart = CartHelper::getCart();
 
@@ -46,10 +87,16 @@ function handleVatValidation() {
         \wp_send_json(['message' => __('VAT number format is invalid', 'fluent-cart')], 422);
     }
 
+    $validation = validateVatNumberWithApi($vatNumber);
+    
+    if (!$validation['valid']) {
+        \wp_send_json(['message' => $validation['message']], 422);
+    }
+
     $taxData = $checkoutData['tax_data'];
     $taxData['valid'] = true;
     $taxData['country'] = 'HU';
-    $taxData['vat_number'] = $vatNumber;
+    $taxData['vat_number'] = $validation['tax_number'];
 
     $checkoutData['tax_data'] = $taxData;
     $cart->checkout_data = $checkoutData;
