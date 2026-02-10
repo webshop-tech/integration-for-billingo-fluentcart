@@ -382,17 +382,18 @@ function create_invoice($order, $main_order = null) {
         return;
     }
     
-    if (!empty($result['success']) && !empty($result['invoice_number'])) {
+    if (!empty($result['success']) && !empty($result['invoice_number']) && !empty($result['document_id'])) {
         $invoice_number = $result['invoice_number'];
+        $document_id = $result['document_id'];
         
-        write_log($order_id, 'Invoice generated successfully', 'Invoice number', $invoice_number);
+        write_log($order_id, 'Invoice generated successfully', 'Invoice number', $invoice_number, 'Document ID', $document_id);
         
-        save_invoice($order_id, $invoice_number);
+        save_invoice($order_id, $invoice_number, $document_id);
         
         $message = sprintf('Billingo invoice created: %s', $invoice_number);
         log_activity($order_id, true, $message);
     } else {
-        $error_message = 'Failed to generate invoice: Unknown error';
+        $error_message = 'Failed to generate invoice: Missing invoice number or document ID';
         write_log($order_id, 'Invoice generation failed', 'Error', $error_message);
         log_activity($order_id, false, $error_message);
     }

@@ -13,7 +13,7 @@ function create_invoices_table() {
         id bigint(20) NOT NULL AUTO_INCREMENT,
         order_id bigint(20) NOT NULL,
         invoice_number varchar(255) NOT NULL,
-        document_id bigint(20),
+        document_id bigint(20) NOT NULL DEFAULT -1,
         created_at datetime DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY  (id),
         UNIQUE KEY order_id (order_id),
@@ -24,7 +24,7 @@ function create_invoices_table() {
     dbDelta($sql);
 }
 
-function save_invoice($order_id, $invoice_number) {
+function save_invoice($order_id, $invoice_number, $document_id) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'billingo_fluentcart_invoices';
     
@@ -34,9 +34,10 @@ function save_invoice($order_id, $invoice_number) {
         $table_name,
         [
             'order_id' => $order_id,
-            'invoice_number' => $invoice_number
+            'invoice_number' => $invoice_number,
+            'document_id' => $document_id
         ],
-        ['%d', '%s']
+        ['%d', '%s', '%d']
     );
 }
 
