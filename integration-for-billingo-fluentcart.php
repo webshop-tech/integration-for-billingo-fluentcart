@@ -141,6 +141,9 @@ function get_pdf_path($invoice_number) {
     create_invoice($order);
 }, 10, 1);
 
+\add_action('fluent_cart/order_refunded', function($data) {
+}, 10, 1);
+
 \add_action('fluent_cart/payment_status_changed_to_paid', function($data) {
     $order = $data['order'];
     create_invoice($order);
