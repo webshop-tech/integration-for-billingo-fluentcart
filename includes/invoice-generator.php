@@ -356,6 +356,15 @@ function generate_invoice($order, $current_order_id) {
     );
 }
 
+function cancel_invoice($order) {
+    // TODO: should call POST /documents/{id}/cancel
+    // Body: {
+    // "cancellation_reason" : "refund"
+    //}
+    // log if cancellation is successful or not based on http status
+
+}
+
 function create_invoice($order, $main_order = null) {
     $order_id = $order->id;
     if ($main_order === null)
