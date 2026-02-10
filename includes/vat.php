@@ -79,9 +79,9 @@ function handleVatValidation() {
 
     $validation = validateVatNumberWithApi($vatNumber);
     
-    if (!$validation['valid']) {
+    //if (!$validation['valid']) {
         \wp_send_json(['message' => $validation['message']], 422);
-    }
+    //}
 
     $taxData = $checkoutData['tax_data'];
     $taxData['valid'] = true;
