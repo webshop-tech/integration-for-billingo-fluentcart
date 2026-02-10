@@ -13,6 +13,7 @@ function create_invoices_table() {
         id bigint(20) NOT NULL AUTO_INCREMENT,
         order_id bigint(20) NOT NULL,
         invoice_number varchar(255) NOT NULL,
+        document_id bigint(20),
         created_at datetime DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY  (id),
         UNIQUE KEY order_id (order_id),
