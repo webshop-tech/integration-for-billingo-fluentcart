@@ -105,13 +105,7 @@ function check_tax_number_api($order_id, $api_key, $tax_number) {
     }
     
     $endpoint = '/utils/check-tax-number/' . urlencode($tax_number);
-    $result = make_billingo_request($order_id, $api_key, $endpoint, 'GET');
-    
-    if (\is_wp_error($result)) {
-        return $result;
-    }
-    
-    return $result;
+    return make_billingo_request($order_id, $api_key, $endpoint, 'GET');
 }
 
 /**

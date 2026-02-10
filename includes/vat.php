@@ -92,9 +92,9 @@ function handleVatValidation() {
     $cart->checkout_data = $checkoutData;
     $cart->save();
 
-    ob_start();
+    \ob_start();
     (new CartSummaryRender($cart))->render(false);
-    $cartSummaryInner = ob_get_clean();
+    $cartSummaryInner = \ob_get_clean();
 
 
     \ob_start();
