@@ -4,7 +4,7 @@ Tags: billingo, fluentcart, invoice, magyar, szamlazo
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,7 +110,6 @@ Data transmitted:
 = Limitations =
 
 * **VAT Rates**: Only explicit rates supported (0%, 5%, 18%, 27%). Named VAT keys (AAM, TAM, TEHK) are not supported.
-* **B2B Sales**: Buyers must have an EU VAT ID. Local VAT ID only is not yet supported.
 * **Document Types**: Only Invoices can be generated. Receipts and Pro forma invoices are not supported.
 * **IPN**: Instant Payment Notification is not yet supported.
 * **Lag**: Customers might need to wait a few seconds on the order conrifmation page before being able to download the invoice.
@@ -141,6 +140,9 @@ The interface language follows your WordPress language settings.
 1. Plugin settings page
 
 == Changelog ==
+
+= 1.2.0 =
+* Support both EU and Hungarian VAT ids
 
 = 1.0.1 =
 * Fix sanitation issue for API key

@@ -10,6 +10,11 @@ use FluentCart\App\Helpers\CartHelper;
 use FluentCart\App\Services\Renderer\EUVatRenderer;
 use FluentCart\App\Services\Renderer\CartSummaryRender;
 
+function isValidVatFormat($vatNumber): bool
+{
+    return preg_match('/^\d{8}-\d{1}-\d{2}$/', $vatNumber) === 1;
+}
+
 function replace_eu_vat_header($content) {
     return preg_replace(
         '/<h4[^>]*id="eu-vat-heading"[^>]*>(.*?)<\/h4>/s',
@@ -35,6 +40,10 @@ function handleVatValidation() {
 
     if (empty($vatNumber)) {
         \wp_send_json(['message' => __('VAT number is required', 'fluent-cart')], 422);
+    }
+
+    if (!isValidVatFormat($vatNumber)) {
+        \wp_send_json(['message' => __('VAT number format is invalid', 'fluent-cart')], 422);
     }
 
     $taxData = $checkoutData['tax_data'];
