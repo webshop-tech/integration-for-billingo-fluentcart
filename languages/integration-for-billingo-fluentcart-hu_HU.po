@@ -213,3 +213,7 @@ msgstr "Utánvét"
 #: integration-for-billingo-fluentcart.php
 msgid "Other"
 msgstr "Egyéb"
+
+#: integration-for-billingo-fluentcart.php
+msgid "Hungarian VAT ID"
+msgstr "Adószám"
