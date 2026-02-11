@@ -116,6 +116,17 @@ function create_billingo_document($order_id, $api_key, $document_data) {
 }
 
 /**
+ * Cancel a document (invoice) in Billingo v3
+ */
+function cancel_document_api($order_id, $api_key, $document_id, $reason = 'refund') {
+    $endpoint = '/documents/' . intval($document_id) . '/cancel';
+    $body = array(
+        'cancellation_reason' => $reason
+    );
+    return make_billingo_request($order_id, $api_key, $endpoint, 'POST', $body);
+}
+
+/**
  * Download a document PDF
  */
 function download_document_pdf($order_id, $api_key, $document_id) {

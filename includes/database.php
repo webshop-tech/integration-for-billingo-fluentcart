@@ -50,3 +50,13 @@ function get_invoice_number_by_order_id($order_id) {
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
     return $wpdb->get_var($wpdb->prepare("SELECT invoice_number FROM %i WHERE order_id = %d", $table_name, $order_id));
 }
+
+function get_document_id_by_order_id($order_id) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'billingo_fluentcart_invoices';
+    
+    // Direct database query is necessary for custom table.
+    // Response is not cached because data is volatile
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+    return $wpdb->get_var($wpdb->prepare("SELECT document_id FROM %i WHERE order_id = %d", $table_name, $order_id));
+}
