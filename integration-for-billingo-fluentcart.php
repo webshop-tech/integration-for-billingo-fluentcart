@@ -158,6 +158,8 @@ function get_pdf_path($invoice_number) {
     write_log($order_id, 'fluent_cart/order_refunded', 'Order ID', $order_id);
     if ($data['type'] == 'full') {
         cancel_invoice($order);
+    } else {
+        log_activity($order_id, false, "Partial refund is not supported yet. Create invoice manually.");
     }
 }, 10, 1);
 
