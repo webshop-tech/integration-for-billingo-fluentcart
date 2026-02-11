@@ -138,16 +138,43 @@ function get_pdf_path($invoice_number) {
 
 \add_action('fluent_cart/order_paid_done', function($data) {
     $order = $data['order'];
+    $order_id = $order->id;
+    write_log($order_id, 'fluent_cart/order_paid_done', 'Order ID', $order_id);
     create_invoice($order);
+}, 10, 1);
+
+\add_action('fluent_cart/order_status_changed', function($data) {
+    $order = $data['order'];
+    $order_id = $order->id;
+    write_log($order_id, 'fluent_cart/order_status_changed', 'new status', $data['new_status']);
 }, 10, 1);
 
 \add_action('fluent_cart/order_refunded', function($data) {
     $order = $data['order'];
+    $order_id = $order->id;
+    write_log($order_id, 'fluent_cart/order_refunded', 'Order ID', $order_id);
+    cancel_invoice($order);
+}, 10, 1);
+
+
+\add_action('fluent_cart/order_fully_refunded', function($data) {
+    $order = $data['order'];
+    $order_id = $order->id;
+    write_log($order_id, 'fluent_cart/order_fully_refunded', 'Order ID', $order_id);
+    cancel_invoice($order);
+}, 10, 1);
+
+\add_action('fluent_cart/order_partially_refunded ', function($data) {
+    $order = $data['order'];
+    $order_id = $order->id;
+    write_log($order_id, 'fluent_cart/order_partially_refunded ', 'Order ID', $order_id);
     cancel_invoice($order);
 }, 10, 1);
 
 \add_action('fluent_cart/payment_status_changed_to_paid', function($data) {
     $order = $data['order'];
+    $order_id = $order->id;
+    write_log($order_id, 'fluent_cart/payment_status_changed_to_paid', 'Order ID', $order_id);
     create_invoice($order);
 }, 10, 1);
 
