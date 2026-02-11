@@ -9,7 +9,7 @@ function create_invoices_table() {
     $table_name = $wpdb->prefix . 'billingo_fluentcart_invoices';
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE $table_name (
         id bigint(20) NOT NULL AUTO_INCREMENT,
         order_id bigint(20) NOT NULL,
         invoice_number varchar(255) NOT NULL,
