@@ -155,8 +155,10 @@ function get_pdf_path($invoice_number) {
 \add_action('fluent_cart/order_refunded', function($data) {
     $order = $data['order'];
     $order_id = $order->id;
-    write_log($order_id, 'fluent_cart/order_refunded', print_r( $data, true ));
-    cancel_invoice($order);
+    write_log($order_id, 'fluent_cart/order_refunded', 'Order ID', $order_id);
+    if ($data['type'] == 'full') {
+        cancel_invoice($order);
+    }
 }, 10, 1);
 
 \add_action('fluent_cart/payment_status_changed_to_paid', function($data) {
