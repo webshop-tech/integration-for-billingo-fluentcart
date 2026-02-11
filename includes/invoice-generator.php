@@ -374,7 +374,7 @@ function cancel_invoice($order, $reason) {
     
     $document_id = get_document_id_by_order_id($order_id);
     
-    if (empty($document_id) || $document_id === -1) {
+    if (empty($document_id) || $document_id == -1) {
         $error_message = 'No invoice found for this order';
         write_log($order_id, 'Invoice cancellation failed', 'Error', $error_message);
         log_activity($order_id, false, $error_message);

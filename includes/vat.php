@@ -80,6 +80,14 @@ function handleVatValidation() {
     $validation = validateVatNumberWithApi($vatNumber);
     
     if (!$validation['message'] != 'validation_ok') {
+        
+        // TODO: possible messages are:
+        // external_nav_service_unreachable
+        // invalid_tax_number
+        // no_online_szamla_settings
+        // non_exist_tax_number
+        // validation_ok
+        // return a human readable error message for each
         \wp_send_json(['message' => $validation['message']], 422);
     }
 
