@@ -356,7 +356,7 @@ function generate_invoice($order, $current_order_id) {
     );
 }
 
-function cancel_invoice($order) {
+function cancel_invoice($order, $reason) {
     $order_id = $order->id;
     
     write_log($order_id, 'Invoice cancellation triggered', 'Order ID', $order_id);
@@ -383,7 +383,7 @@ function cancel_invoice($order) {
     
     write_log($order_id, 'Cancelling document via Billingo v3 API', 'Document ID', $document_id);
     
-    $result = cancel_document_api($order_id, $api_key, $document_id, 'refund');
+    $result = cancel_document_api($order_id, $api_key, $document_id, $reason);
     
     if (\is_wp_error($result)) {
         $error_message = 'Failed to cancel invoice: ' . $result->get_error_message();
