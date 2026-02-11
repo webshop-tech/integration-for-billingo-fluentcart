@@ -142,6 +142,7 @@ function get_pdf_path($invoice_number) {
 }, 10, 1);
 
 \add_action('fluent_cart/order_refunded', function($data) {
+    $order = $data['order'];
     cancel_invoice($order);
 }, 10, 1);
 
