@@ -21,7 +21,8 @@ function create_invoices_table() {
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
+    $data = dbDelta($sql);
+    error_log( "IBF" . print_r( $data, true ) );
 }
 
 function save_invoice($order_id, $invoice_number, $document_id) {
