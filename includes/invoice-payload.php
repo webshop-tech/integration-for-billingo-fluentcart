@@ -15,7 +15,7 @@ function get_payload($order, $current_order_id, $partner_id, $block_id)
 
     $billingo_items = build_document_items($items_data);
 
-    $invoice_type = \get_option('billingo_fluentcart_invoice_type', 1);
+    $invoice_type = \get_option('billingo_fluentcart_invoice_type', "1");
     $invoice_language = \get_option('billingo_fluentcart_invoice_language', 'hu');
     $payment_method_raw = \get_option('billingo_fluentcart_payment_method', 'Átutalás');
 
@@ -99,7 +99,7 @@ function build_order_items_data($order, $current_order_id) {
         $taxRate = "0";
         $tax_amount = 0;
 
-        if (\get_option('billingo_fluentcart_tax_exempt', 0) == 1) {
+        if (\get_option('billingo_fluentcart_tax_exempt', '0') == '1') {
             $taxRate = "AAM";
         } else {
             if ($order->tax_behavior != 0) {
@@ -151,7 +151,7 @@ function build_order_items_data($order, $current_order_id) {
         $shipping_vat_rate = "0";
 
         if ($order->tax_behavior != 0) {
-            $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', 27);
+            $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', '27');
             $shipping_vat_rate = strval($shipping_vat);
             $shipping_vat_amount = $shipping_net * ($shipping_vat / 100);
         }

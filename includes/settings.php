@@ -107,7 +107,7 @@ const INVOICE_TYPE_E_INVOICE = 2;
     }
     
     if (isset($_POST['billingo_fluentcart_apply_shipping_vat']) && \check_admin_referer('billingo_fluentcart_apply_shipping_vat_action', 'billingo_fluentcart_apply_shipping_vat_nonce')) {
-        $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', 27);
+        $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', "27");
         setShippingTaxRate($shipping_vat);
         \add_settings_error('billingo_fluentcart_messages', 'billingo_fluentcart_vat_applied', \__('Shipping VAT rate applied to all tax rates successfully', 'integration-for-billingo-fluentcart'), 'updated');
     }

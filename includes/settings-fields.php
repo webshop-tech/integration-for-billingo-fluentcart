@@ -144,7 +144,7 @@ function add_settings_fields()
         'billingo_fluentcart_shipping_vat',
         \__('Shipping VAT Rate', 'integration-for-billingo-fluentcart'),
         function () {
-            $value = \get_option('billingo_fluentcart_shipping_vat', 27);
+            $value = \get_option('billingo_fluentcart_shipping_vat', '27');
             $options = [0, 5, 18, 27];
             echo '<select name="billingo_fluentcart_shipping_vat">';
             foreach ($options as $option) {
@@ -161,7 +161,7 @@ function add_settings_fields()
         \__('Apply to Tax Rates', 'integration-for-billingo-fluentcart'),
         function () {
             $current_rates = getShippingTaxRates();
-            $selected_vat = \get_option('billingo_fluentcart_shipping_vat', 27);
+            $selected_vat = \get_option('billingo_fluentcart_shipping_vat', '27');
 
             if (empty($current_rates)) {
                 echo '<p class="description" style="color: #dc3232;"><strong>' . \esc_html__('Warning:', 'integration-for-billingo-fluentcart') . '</strong> ' . \esc_html__('No tax rates found. Please configure tax rates in FluentCart first.', 'integration-for-billingo-fluentcart') . '</p>';
@@ -179,8 +179,10 @@ function add_settings_fields()
         'billingo_fluentcart_tax_exempt',
         \__('Vat Exempt', 'integration-for-billingo-fluentcart'),
         function () {
-            $value = \get_option('billingo_fluentcart_tax_exempt', 0);
-            echo '<input type="checkbox" name="billingo_fluentcart_tax_exempt" value="1" ' . ($value ? 'checked' : '') . ' />';
+            $value = \get_option('billingo_fluentcart_tax_exempt', "0");
+            echo '<input type="checkbox" name="billingo_fluentcart_tax_exempt" value="1" ';
+            \checked("1", $value);
+            echo ' />';
             echo '<label for="billingo_fluentcart_tax_exempt">' . \esc_html__('I am exempt from Hungarian VAT.', 'integration-for-billingo-fluentcart') . '</label>';
         },
         'integration-for-billingo-fluentcart',
@@ -191,8 +193,10 @@ function add_settings_fields()
         'billingo_fluentcart_zero_invoice',
         \__('Zero-Value Invoice', 'integration-for-billingo-fluentcart'),
         function () {
-            $value = \get_option('billingo_fluentcart_zero_invoice', 1);
-            echo '<input type="checkbox" name="billingo_fluentcart_zero_invoice" value="1" ' . ($value ? 'checked' : '') . ' />';
+            $value = \get_option('billingo_fluentcart_zero_invoice', "1");
+            echo '<input type="checkbox" name="billingo_fluentcart_zero_invoice" value="1" ';
+            \checked("1", $value);
+            echo ' />';
             echo '<label for="billingo_fluentcart_zero_invoice">' . \esc_html__('Create invoice when cart total is zero.', 'integration-for-billingo-fluentcart') . '</label>';
         },
         'integration-for-billingo-fluentcart',
