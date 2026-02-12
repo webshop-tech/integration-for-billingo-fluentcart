@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 use FluentCart\App\Models\Cart;
 
-function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $billing_company_name) {
+function create_buyer_data($order, $current_order_id, $vat_number, $billing_company_name) {
     $order_id = $order->id;
     
     $billing = $order->billing_address;
@@ -98,7 +98,7 @@ function generate_invoice($order, $current_order_id) {
         write_log($current_order_id, 'No VAT number provided');
     }
 
-    $buyer_data = create_buyer_data($order, $current_order_id, $api_key, $vat_number, $billing_company_name);
+    $buyer_data = create_buyer_data($order, $current_order_id, $vat_number, $billing_company_name);
     if (\is_wp_error($buyer_data)) {
         return $buyer_data;
     }
@@ -134,7 +134,13 @@ function generate_invoice($order, $current_order_id) {
 }
 
 function create_invoice($order, $main_order = null) {
+
     $order_id = $order->id;
+    if ($order->total_amount == 0 && \get_option('billingo_fluentcart_zero_invoice', 1) == 0) {
+        write_log($order_id, 'Skipping invoice creation for order with 0 total', 'Order ID', $order_id, 'Main order ID', $main_order->id);
+        return;
+    }
+
     if ($main_order === null)
         $main_order = $order;
     

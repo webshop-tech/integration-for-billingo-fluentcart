@@ -99,11 +99,15 @@ function build_order_items_data($order, $current_order_id) {
         $taxRate = "0";
         $tax_amount = 0;
 
-        if ($order->tax_behavior != 0) {
-            if (isset($order_item->line_meta['tax_config']['rates'][0]['rate'])) {
-                $taxRate = $order_item->line_meta['tax_config']['rates'][0]['rate'];
+        if (\get_option('billingo_fluentcart_tax_exempt', 0) == 1) {
+            $taxRate = "AAM";
+        } else {
+            if ($order->tax_behavior != 0) {
+                if (isset($order_item->line_meta['tax_config']['rates'][0]['rate'])) {
+                    $taxRate = $order_item->line_meta['tax_config']['rates'][0]['rate'];
+                }
+                $tax_amount = $order_item->tax_amount / 100;
             }
-            $tax_amount = $order_item->tax_amount / 100;
         }
 
         $net_price = $order_item->line_total / 100;
