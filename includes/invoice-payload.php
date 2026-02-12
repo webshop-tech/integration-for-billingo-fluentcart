@@ -47,16 +47,6 @@ function get_payload($order, $current_order_id, $partner_id, $block_id)
     return  build_document_payload($document_params);
 }
 
-function map_vat_rate($rate): string
-{
-    $rate_numeric = floatval($rate);
-
-    if ($rate_numeric == 0) {
-        return '0%';
-    }
-
-    return strval(intval($rate_numeric)) . '%';
-}
 function build_document_items($items_data): array
 {
     $billingo_items = array();
@@ -68,7 +58,7 @@ function build_document_items($items_data): array
             'unit_price_type' => 'net',
             'quantity' => floatval($item['quantity']),
             'unit' => $item['unit'],
-            'vat' => map_vat_rate($item['vat_rate']),
+            'vat' => $item['vat_rate'],
         );
 
         if (!empty($item['comment'])) {
@@ -108,6 +98,7 @@ function build_order_items_data($order, $current_order_id) {
                 }
                 $tax_amount = $order_item->tax_amount / 100;
             }
+            $taxRate = "{$taxRate}%";
         }
 
         $net_price = $order_item->line_total / 100;
@@ -150,10 +141,14 @@ function build_order_items_data($order, $current_order_id) {
         $shipping_vat_amount = 0;
         $shipping_vat_rate = "0";
 
-        if ($order->tax_behavior != 0) {
-            $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', '27');
-            $shipping_vat_rate = strval($shipping_vat);
-            $shipping_vat_amount = $shipping_net * ($shipping_vat / 100);
+        if (\get_option('billingo_fluentcart_tax_exempt', '0') == '1') {
+            $shipping_vat_rate = "AAM";
+        } else {
+            if ($order->tax_behavior != 0) {
+                $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', '27');
+                $shipping_vat_rate = strval($shipping_vat);
+                $shipping_vat_amount = $shipping_net * ($shipping_vat / 100);
+            }
         }
 
         $shipping_gross = $shipping_net + $shipping_vat_amount;
