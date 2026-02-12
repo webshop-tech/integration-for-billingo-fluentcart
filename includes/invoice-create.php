@@ -6,35 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 use FluentCart\App\Models\Cart;
 
-
-function get_taxpayer_data($order_id, $api_key, $vat_number) {
-    try {
-        write_log($order_id, 'Checking tax number via Billingo API', 'Tax number', $vat_number);
-        
-        $result = check_tax_number_api($order_id, $api_key, $vat_number);
-        
-        if (\is_wp_error($result)) {
-            write_log($order_id, 'Failed to check tax number', 'Error', $result->get_error_message());
-            return null;
-        }
-        
-        if (isset($result['result']) && $result['result'] === 'validation_ok') {
-            write_log($order_id, 'Tax number is valid');
-            return array(
-                'valid' => true,
-                'vat_id' => $vat_number,
-            );
-        }
-        
-        write_log($order_id, 'Tax number validation result', $result['result'] ?? 'unknown');
-        return null;
-        
-    } catch (\Exception $e) {
-        write_log($order_id, 'Failed to check tax number', 'Error', $e->getMessage());
-        return null;
-    }
-}
-
 function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $billing_company_name) {
     $order_id = $order->id;
     
@@ -50,18 +21,6 @@ function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $bi
     $buyer_city = $billing->city;
     $buyer_address = $billing->address_1 . ($billing->address_2 ? ' ' . $billing->address_2 : '');
     $buyer_country = $billing->country ?? 'HU';
-    $buyer_vat_id = null;
-    
-    if (!empty($vat_number)) {
-        $taxpayer_data = get_taxpayer_data($order_id, $api_key, $vat_number);
-        
-        if ($taxpayer_data && isset($taxpayer_data['vat_id'])) {
-            $buyer_vat_id = $taxpayer_data['vat_id'];
-        } else {
-            // Use the provided VAT number even if validation fails
-            $buyer_vat_id = $vat_number;
-        }
-    }
     
     $buyer_data = array(
         'name' => $buyer_name,
@@ -71,8 +30,8 @@ function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $bi
         'country' => $buyer_country,
     );
     
-    if (!empty($buyer_vat_id)) {
-        $buyer_data['tax_number'] = $buyer_vat_id;
+    if (!empty($vat_number)) {
+        $buyer_data['tax_number'] = $vat_number;
     }
     
     $meta = $billing->meta;
@@ -87,76 +46,6 @@ function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $bi
     write_log($current_order_id, 'Buyer data created', 'Name', $buyer_name, 'City', $buyer_city);
     
     return $buyer_data;
-}
-
-function build_partner_data($buyer_info): array
-{
-    $partner = array(
-        'name' => $buyer_info['name'],
-        'address' => array(
-            'country_code' => $buyer_info['country'] ?: 'HU',
-            'post_code' => $buyer_info['postcode'],
-            'city' => $buyer_info['city'],
-            'address' => $buyer_info['address'],
-        ),
-    );
-
-    if (!empty($buyer_info['email'])) {
-        $partner['emails'] = array($buyer_info['email']);
-    }
-
-    if (!empty($buyer_info['tax_number'])) {
-        $partner['taxcode'] = $buyer_info['tax_number'];
-
-        if (preg_match('/^([0-9]{8})-([12345])-([0-9]{2})$/', $buyer_info['tax_number'])) {
-            $partner['tax_type'] = 'HAS_TAX_NUMBER';
-        } else {
-            $partner['tax_type'] = 'FOREIGN';
-        }
-    } else {
-        $partner['tax_type'] = 'NO_TAX_NUMBER';
-    }
-
-    if (!empty($buyer_info['phone'])) {
-        $partner['phone'] = $buyer_info['phone'];
-    }
-
-    return $partner;
-}
-
-function get_or_create_partner($order_id, $api_key, $buyer_data) {
-    write_log($order_id, 'Getting or creating partner');
-    
-    // Try to find existing partner by tax number
-    if (!empty($buyer_data['tax_number'])) {
-        write_log($order_id, 'Searching for existing partner by tax number', $buyer_data['tax_number']);
-        
-        $existing_partner = find_partner_by_tax_number($order_id, $api_key, $buyer_data['tax_number']);
-        
-        if (\is_wp_error($existing_partner)) {
-            write_log($order_id, 'Error searching for partner', $existing_partner->get_error_message());
-        } elseif ($existing_partner !== null) {
-            write_log($order_id, 'Found existing partner', 'ID', $existing_partner['id'], 'Name', $existing_partner['name']);
-            return $existing_partner;
-        } else {
-            write_log($order_id, 'No existing partner found with this tax number');
-        }
-    }
-    
-    // Create new partner
-    write_log($order_id, 'Creating new partner');
-    
-    $partner_payload = build_partner_data($buyer_data);
-    $new_partner = create_partner_api($order_id, $api_key, $partner_payload);
-    
-    if (\is_wp_error($new_partner)) {
-        write_log($order_id, 'Failed to create partner', $new_partner->get_error_message());
-        return $new_partner;
-    }
-    
-    write_log($order_id, 'Partner created successfully', 'ID', $new_partner['id'], 'Name', $new_partner['name']);
-    
-    return $new_partner;
 }
 
 function get_document_block($order_id, $api_key) {

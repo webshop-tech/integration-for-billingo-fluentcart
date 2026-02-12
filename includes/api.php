@@ -103,34 +103,3 @@ function download_document_pdf($order_id, $api_key, $document_id) {
         'pdf_data' => $pdf_data,
     );
 }
-
-function fetch_invoice_pdf($order_id, $api_key, $invoice_number) {
-    $endpoint = '/documents/vendor/' . urlencode((string)$order_id);
-    $document = make_billingo_request($order_id, $api_key, $endpoint, 'GET');
-    
-    if (\is_wp_error($document)) {
-        return $document;
-    }
-    
-    if (!isset($document['id'])) {
-        return create_error($order_id, 'document_not_found', 'Document not found for order ID: ' . $order_id);
-    }
-    
-    $document_id = $document['id'];
-    
-    $pdf_result = download_document_pdf($order_id, $api_key, $document_id);
-    
-    if (\is_wp_error($pdf_result)) {
-        return $pdf_result;
-    }
-    
-    $safe_invoice_number = preg_replace('/[^a-zA-Z0-9_-]/', '_', $invoice_number);
-    $filename = 'invoice_' . $safe_invoice_number . '.pdf';
-    
-    return array(
-        'success' => true,
-        'pdf_data' => $pdf_result['pdf_data'],
-        'filename' => $filename,
-    );
-}
-
