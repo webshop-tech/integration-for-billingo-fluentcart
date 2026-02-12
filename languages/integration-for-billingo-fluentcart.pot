@@ -209,3 +209,59 @@ msgstr ""
 #: integration-for-billingo-fluentcart.php
 msgid "Other"
 msgstr ""
+
+#: integration-for-billingo-fluentcart.php
+msgid "Hungarian VAT ID"
+msgstr ""
+
+#: includes/vat.php
+msgid "The validation service is temporarily unavailable. Please try again later."
+msgstr ""
+
+#: includes/vat.php
+msgid "The tax number format is invalid."
+msgstr ""
+
+#: includes/vat.php
+msgid "Online invoice settings are not configured. Please contact support."
+msgstr ""
+
+#: includes/vat.php
+msgid "The tax number does not exist in the registry."
+msgstr ""
+
+#: includes/vat.php
+msgid "Tax number is valid."
+msgstr ""
+
+#: includes/vat.php
+msgid "Tax number validation failed."
+msgstr ""
+
+#: includes/vat.php
+msgid "API key not configured"
+msgstr ""
+
+#: includes/vat.php
+msgid "Tax number validation failed"
+msgstr ""
+
+#: includes/vat.php
+msgid "Valid tax number"
+msgstr ""
+
+#: includes/vat.php
+msgid "Invalid tax number"
+msgstr ""
+
+#: includes/vat.php
+msgid "Security check failed"
+msgstr ""
+
+#: includes/vat.php
+msgid "VAT number is required"
+msgstr ""
+
+#: includes/vat.php
+msgid "VAT has been applied successfully"
+msgstr ""

@@ -9,6 +9,19 @@ if (!defined('ABSPATH')) {
 use FluentCart\App\Helpers\CartHelper;
 use FluentCart\App\Services\Renderer\EUVatRenderer;
 use FluentCart\App\Services\Renderer\CartSummaryRender;
+
+function getHumanReadableVatValidationMessage($messageKey) {
+    $messages = array(
+        'external_nav_service_unreachable' => __('The validation service is temporarily unavailable. Please try again later.', 'integration-for-billingo-fluentcart'),
+        'invalid_tax_number' => __('The tax number format is invalid.', 'integration-for-billingo-fluentcart'),
+        'no_online_szamla_settings' => __('Online invoice settings are not configured. Please contact support.', 'integration-for-billingo-fluentcart'),
+        'non_exist_tax_number' => __('The tax number does not exist in the registry.', 'integration-for-billingo-fluentcart'),
+        'validation_ok' => __('Tax number is valid.', 'integration-for-billingo-fluentcart'),
+    );
+
+    return isset($messages[$messageKey]) ? $messages[$messageKey] : __('Tax number validation failed.', 'integration-for-billingo-fluentcart');
+}
+
 function replace_eu_vat_header($content) {
     return preg_replace(
         '/<h4[^>]*id="eu-vat-heading"[^>]*>(.*?)<\/h4>/s',
@@ -79,16 +92,9 @@ function handleVatValidation() {
 
     $validation = validateVatNumberWithApi($vatNumber);
     
-    if (!$validation['message'] != 'validation_ok') {
-        
-        // TODO: possible messages are:
-        // external_nav_service_unreachable
-        // invalid_tax_number
-        // no_online_szamla_settings
-        // non_exist_tax_number
-        // validation_ok
-        // return a human readable error message for each
-        \wp_send_json(['message' => $validation['message']], 422);
+    if ($validation['message'] !== 'validation_ok') {
+        $humanReadableMessage = getHumanReadableVatValidationMessage($validation['message']);
+        \wp_send_json(['message' => $humanReadableMessage], 422);
     }
 
     $taxData = $checkoutData['tax_data'];

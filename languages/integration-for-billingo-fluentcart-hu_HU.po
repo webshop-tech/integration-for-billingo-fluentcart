@@ -217,3 +217,55 @@ msgstr "Egyéb"
 #: integration-for-billingo-fluentcart.php
 msgid "Hungarian VAT ID"
 msgstr "Adószám"
+
+#: includes/vat.php
+msgid "The validation service is temporarily unavailable. Please try again later."
+msgstr "A validációs szolgáltatás átmenetileg nem elérhető. Kérlek, próbáld meg később."
+
+#: includes/vat.php
+msgid "The tax number format is invalid."
+msgstr "Az adószám formátuma érvénytelen."
+
+#: includes/vat.php
+msgid "Online invoice settings are not configured. Please contact support."
+msgstr "Az online számla beállításai nincsenek konfigurálva. Kérlek, fordulj az ügyfélszolgálathoz."
+
+#: includes/vat.php
+msgid "The tax number does not exist in the registry."
+msgstr "Az adószám nem létezik az nyilvántartásban."
+
+#: includes/vat.php
+msgid "Tax number is valid."
+msgstr "Az adószám érvényes."
+
+#: includes/vat.php
+msgid "Tax number validation failed."
+msgstr "Az adószám ellenőrzése sikertelen."
+
+#: includes/vat.php
+msgid "API key not configured"
+msgstr "API kulcs nincs konfigurálva"
+
+#: includes/vat.php
+msgid "Tax number validation failed"
+msgstr "Az adószám ellenőrzése sikertelen"
+
+#: includes/vat.php
+msgid "Valid tax number"
+msgstr "Érvényes adószám"
+
+#: includes/vat.php
+msgid "Invalid tax number"
+msgstr "Érvénytelen adószám"
+
+#: includes/vat.php
+msgid "Security check failed"
+msgstr "Biztonsági ellenőrzés sikertelen"
+
+#: includes/vat.php
+msgid "VAT number is required"
+msgstr "Adószám szükséges"
+
+#: includes/vat.php
+msgid "VAT has been applied successfully"
+msgstr "Az áfa sikeresen alkalmazva"
