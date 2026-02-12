@@ -4,9 +4,7 @@ namespace BillingoFluentCart;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-use FluentCart\App\Models\Activity;
 use FluentCart\App\Models\Cart;
-use FluentCart\App\Models\OrderItem;
 
 
 function get_taxpayer_data($order_id, $api_key, $vat_number) {
@@ -155,106 +153,6 @@ function get_document_block($order_id, $api_key) {
     return intval($first_block['id']);
 }
 
-function build_order_items_data($order, $current_order_id) {
-    $order_id = $order->id;
-    $items = OrderItem::where('order_id', $order_id)->get();
-    
-    if ($items->isEmpty()) {
-        return create_error($current_order_id, 'no_items', "No items found for order " . absint($order_id));
-    }
-    
-    $quantity_unit = \get_option('billingo_fluentcart_quantity_unit', 'db');
-    
-    write_log($current_order_id, 'Building order items', 'Item count', $items->count());
-    
-    $items_data = array();
-    
-    foreach ($items as $order_item) {
-        $taxRate = "0";
-        $tax_amount = 0;
-
-        if ($order->tax_behavior != 0) {
-            if (isset($order_item->line_meta['tax_config']['rates'][0]['rate'])) {
-                $taxRate = $order_item->line_meta['tax_config']['rates'][0]['rate'];
-            }
-            $tax_amount = $order_item->tax_amount / 100;
-        }
-        
-        $net_price = $order_item->line_total / 100;
-        $unit_price = $net_price / $order_item->quantity;
-        $gross_amount = $net_price + $tax_amount;
-
-        $items_data[] = array(
-            'name' => $order_item->title,
-            'quantity' => $order_item->quantity,
-            'unit' => $quantity_unit,
-            'unit_price' => $unit_price,
-            'vat_rate' => $taxRate,
-            'net_price' => $net_price,
-            'vat_amount' => $tax_amount,
-            'gross_amount' => $gross_amount,
-        );
-
-        write_log(
-            $current_order_id,
-            'Item',
-            $order_item->title,
-            'Qty',
-            $order_item->quantity,
-            'Unit price',
-            $unit_price,
-            'Tax rate',
-            $taxRate . '%',
-            'Net',
-            $net_price,
-            'VAT',
-            $tax_amount,
-            'Gross',
-            $gross_amount
-        );
-    }
-
-    if ($order->shipping_total != 0) {
-        $shipping_title = \get_option('billingo_fluentcart_shipping_title', 'Szállítás');
-        $shipping_net = $order->shipping_total / 100;
-        $shipping_vat_amount = 0;
-        $shipping_vat_rate = "0";
-
-        if ($order->tax_behavior != 0) {
-            $shipping_vat = \get_option('billingo_fluentcart_shipping_vat', 27);
-            $shipping_vat_rate = strval($shipping_vat);
-            $shipping_vat_amount = $shipping_net * ($shipping_vat / 100);
-        }
-
-        $shipping_gross = $shipping_net + $shipping_vat_amount;
-
-        $items_data[] = array(
-            'name' => $shipping_title,
-            'quantity' => 1,
-            'unit' => 'db',
-            'unit_price' => $shipping_net,
-            'vat_rate' => $shipping_vat_rate,
-            'net_price' => $shipping_net,
-            'vat_amount' => $shipping_vat_amount,
-            'gross_amount' => $shipping_gross,
-        );
-    }
-    
-    return $items_data;
-}
-
-function log_activity($order_id, $success, $message) {
-    Activity::create([
-        'status' => $success ? 'success' : 'failed',
-        'log_type' => 'activity',
-        'module_type' => 'FluentCart\App\Models\Order',
-        'module_id' => $order_id,
-        'module_name' => 'order',
-        'title' => $success ? 'Billingo invoice successfully generated' : 'Billingo invoice generation failed',
-        'content' => $message
-    ]);
-}
-
 function generate_invoice($order, $current_order_id) {
     $order_id = $order->id;
     
@@ -275,69 +173,25 @@ function generate_invoice($order, $current_order_id) {
     } else {
         write_log($current_order_id, 'No VAT number provided');
     }
-    
-    // Step 1: Prepare buyer data
+
     $buyer_data = create_buyer_data($order, $current_order_id, $api_key, $vat_number, $billing_company_name);
     if (\is_wp_error($buyer_data)) {
         return $buyer_data;
     }
-    
-    // Step 2: Get or create partner
+
     $partner = get_or_create_partner($current_order_id, $api_key, $buyer_data);
     if (\is_wp_error($partner)) {
         return $partner;
     }
-    
-    // Step 3: Get document block
+
     $block_id = get_document_block($current_order_id, $api_key);
     if (\is_wp_error($block_id)) {
         return $block_id;
     }
-    
-    // Step 4: Build items
-    $items_data = build_order_items_data($order, $current_order_id);
-    if (\is_wp_error($items_data)) {
-        return $items_data;
-    }
-    
-    $billingo_items = build_document_items($items_data);
-    
-    // Step 5: Prepare document parameters
-    $invoice_type = \get_option('billingo_fluentcart_invoice_type', 1);
-    $invoice_language = \get_option('billingo_fluentcart_invoice_language', 'hu');
-    $payment_method_raw = \get_option('billingo_fluentcart_payment_method', 'Átutalás');
-    
-    $today = gmdate('Y-m-d');
-    $due_date = gmdate('Y-m-d', strtotime('+8 days'));
-    
-    $payment_method = map_payment_method($payment_method_raw);
-    
-    write_log($current_order_id, 'Invoice settings', 'Type', ($invoice_type == 2) ? 'Electronic' : 'Paper', 'Language', $invoice_language, 'Payment method', $payment_method);
-    
-    $document_params = array(
-        'partner_id' => $partner['id'],
-        'block_id' => $block_id,
-        'type' => 'invoice',
-        'fulfillment_date' => $today,
-        'due_date' => $due_date,
-        'payment_method' => $payment_method,
-        'language' => $invoice_language,
-        'currency' => $order->currency,
-        'electronic' => ($invoice_type == 2),
-        'paid' => false,
-        'items' => $billingo_items,
-    );
-    
-    if (!empty($current_order_id)) {
-        $document_params['vendor_id'] = strval($current_order_id);
-    }
-    
-    // Step 6: Build document payload
-    $payload = build_document_payload($document_params);
-    
+    $payload = getPayload($order, $current_order_id, $partner['id'], $block_id);
+
     write_log($current_order_id, 'Creating document via Billingo v3 API');
-    
-    // Step 7: Create document
+
     $result = create_billingo_document($current_order_id, $api_key, $payload);
     
     if (\is_wp_error($result)) {
@@ -346,8 +200,7 @@ function generate_invoice($order, $current_order_id) {
     }
     
     write_log($current_order_id, 'Document created successfully', 'ID', $result['id'], 'Invoice number', $result['invoice_number']);
-    
-    // Return success with invoice information
+
     return array(
         'success' => true,
         'invoice_number' => $result['invoice_number'],

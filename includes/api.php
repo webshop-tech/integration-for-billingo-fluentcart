@@ -134,31 +134,6 @@ function fetch_invoice_pdf($order_id, $api_key, $invoice_number) {
     );
 }
 
-function map_payment_method($old_method) {
-    $mapping = array(
-        'Átutalás' => 'wire_transfer',
-        'Készpénz' => 'cash',
-        'Bankkártya' => 'bankcard',
-        'Csekk' => 'postai_csekk',
-        'Utánvét' => 'cash_on_delivery',
-        'PayPal' => 'paypal',
-        'Barion' => 'barion',
-        'Egyéb' => 'other',
-    );
-    
-    return $mapping[$old_method] ?? 'wire_transfer';
-}
-
-function map_vat_rate($rate) {
-    $rate_numeric = floatval($rate);
-    
-    if ($rate_numeric == 0) {
-        return '0%';
-    }
-    
-    return strval(intval($rate_numeric)) . '%';
-}
-
 function build_partner_data($buyer_info) {
     $partner = array(
         'name' => $buyer_info['name'],
@@ -191,71 +166,4 @@ function build_partner_data($buyer_info) {
     }
     
     return $partner;
-}
-
-function build_document_items($items_data) {
-    $billingo_items = array();
-    
-    foreach ($items_data as $item) {
-        $billingo_item = array(
-            'name' => $item['name'],
-            'unit_price' => floatval($item['unit_price']),
-            'unit_price_type' => 'net',
-            'quantity' => floatval($item['quantity']),
-            'unit' => $item['unit'],
-            'vat' => map_vat_rate($item['vat_rate']),
-        );
-        
-        if (!empty($item['comment'])) {
-            $billingo_item['comment'] = $item['comment'];
-        }
-        
-        $billingo_items[] = $billingo_item;
-    }
-    
-    return $billingo_items;
-}
-
-function build_document_payload($params) {
-    $payload = array(
-        'partner_id' => $params['partner_id'],
-        'block_id' => $params['block_id'],
-        'type' => $params['type'] ?? 'invoice',
-        'fulfillment_date' => $params['fulfillment_date'],
-        'due_date' => $params['due_date'],
-        'payment_method' => $params['payment_method'],
-        'language' => $params['language'],
-        'currency' => $params['currency'],
-        'items' => $params['items'],
-    );
-    
-    if (isset($params['vendor_id'])) {
-        $payload['vendor_id'] = $params['vendor_id'];
-    }
-    
-    if (isset($params['bank_account_id'])) {
-        $payload['bank_account_id'] = $params['bank_account_id'];
-    }
-    
-    if (isset($params['conversion_rate'])) {
-        $payload['conversion_rate'] = floatval($params['conversion_rate']);
-    }
-    
-    if (isset($params['electronic'])) {
-        $payload['electronic'] = (bool)$params['electronic'];
-    }
-    
-    if (isset($params['paid'])) {
-        $payload['paid'] = (bool)$params['paid'];
-    }
-    
-    if (isset($params['comment'])) {
-        $payload['comment'] = $params['comment'];
-    }
-    
-    if (isset($params['settings'])) {
-        $payload['settings'] = $params['settings'];
-    }
-    
-    return $payload;
 }

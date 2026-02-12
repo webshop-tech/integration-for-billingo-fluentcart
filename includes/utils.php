@@ -40,11 +40,16 @@ function create_error($order_id, $code, $message, ...$args) {
     return new \WP_Error($code, $formatted_message);
 }
 
-function write_error_to_log($order_id, $error) {
-    $error_code = $error->get_error_code();
-    $error_message = $error->get_error_message();
-    
-    write_log($order_id, 'Error', $error_code, $error_message);
+function log_activity($order_id, $success, $message) {
+    Activity::create([
+        'status' => $success ? 'success' : 'failed',
+        'log_type' => 'activity',
+        'module_type' => 'FluentCart\App\Models\Order',
+        'module_id' => $order_id,
+        'module_name' => 'order',
+        'title' => $success ? 'Billingo invoice successfully generated' : 'Billingo invoice generation failed',
+        'content' => $message
+    ]);
 }
 
 function serve_pdf_download($file_path = null, $pdf_data = null, $filename = 'invoice.pdf') {
@@ -73,7 +78,8 @@ function serve_pdf_download($file_path = null, $pdf_data = null, $filename = 'in
     exit;
 }
 
-function format_bytes($bytes, $precision = 2) {
+function format_bytes($bytes, $precision = 2): string
+{
     $units = ['B', 'KB', 'MB', 'GB', 'TB'];
     
     for ($i = 0; $bytes > 1024 && $i < count($units) - 1; $i++) {
