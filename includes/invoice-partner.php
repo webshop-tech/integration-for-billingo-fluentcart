@@ -6,11 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function build_partner_data($buyer_info): array
 {
-    $countryCode = $buyer_info['country'] ?: 'HU';
     $partner = array(
         'name' => $buyer_info['name'],
         'address' => array(
-            'country_code' => $countryCode,
+            'country_code' => $buyer_info['country'] ?: 'HU',
             'post_code' => $buyer_info['postcode'],
             'city' => $buyer_info['city'],
             'address' => $buyer_info['address'],
@@ -22,11 +21,7 @@ function build_partner_data($buyer_info): array
     }
 
     if (!empty($buyer_info['tax_number'])) {
-        if ($countryCode == 'HU') {
-            $partner['taxcode'] = $buyer_info['tax_number'];
-        } else {
-            $partner['taxcode'] = $countryCode . $buyer_info['tax_number'];
-        }
+        $partner['taxcode'] = $buyer_info['tax_number'];
 
         if (preg_match('/^([0-9]{8})-([12345])-([0-9]{2})$/', $buyer_info['tax_number'])) {
             $partner['tax_type'] = 'HAS_TAX_NUMBER';

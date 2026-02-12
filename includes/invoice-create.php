@@ -31,7 +31,10 @@ function create_buyer_data($order, $current_order_id, $vat_number, $billing_comp
     );
     
     if (!empty($vat_number)) {
-        $buyer_data['tax_number'] = $vat_number;
+        if ($buyer_country == 'HU')
+            $buyer_data['tax_number'] = $vat_number;
+        else
+            $buyer_data['tax_number'] = $buyer_country . $vat_number;
     }
     
     $meta = $billing->meta;
