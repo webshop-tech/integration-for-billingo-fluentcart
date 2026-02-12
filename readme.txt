@@ -143,6 +143,8 @@ The interface language follows your WordPress language settings.
 
 = 1.2.0 =
 * Support both EU and Hungarian VAT ids
+* Support AAM VAT rate
+* Make Zero-Value Invoice optional
 
 = 1.0.1 =
 * Fix sanitation issue for API key
