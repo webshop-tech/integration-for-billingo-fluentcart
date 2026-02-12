@@ -11,207 +11,211 @@ msgstr ""
 "Language-Team: \n"
 
 #: integration-for-billingo-fluentcart.php
+msgid "Billingo for FluentCart"
+msgstr ""
+
+#: includes/settings.php
 msgid "Billingo for FluentCart Settings"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings.php
 msgid "Settings"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings.php
 msgid "Cache cleared successfully"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings.php
 msgid "Shipping VAT rate applied to all tax rates successfully"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
-msgid "Enter your Billingo API credentials below."
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Agent API Key"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "What is this?"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Shipping VAT Rate"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Apply to Tax Rates"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Warning:"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "No tax rates found. Please configure tax rates in FluentCart first."
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "All tax rates are already set to"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Current shipping VAT rates in use:"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Invoice Settings"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Invoice Language"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Invoice Type"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Paper Invoice"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "E-Invoice"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Quantity Unit"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Shipping Title"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Magyar (Hungarian)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "English"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Deutsch (German)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Italiano (Italian)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Română (Romanian)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Slovenčina (Slovak)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Hrvatski (Croatian)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Français (French)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Español (Spanish)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Čeština (Czech)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Polski (Polish)"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Cache Management"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Current cache size:"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Clear Cache"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Clearing the cache will delete all cached PDFs, XMLs, and logs."
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Settings Saved"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Save Settings"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Actions"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Shipping VAT Settings"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
-msgid "Apply Shipping VAT to All Tax Rates"
-msgstr ""
-
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "API Settings"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
+msgid "Enter your Billingo API credentials below."
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Agent API Key"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "What is this?"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Invoice Settings"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Invoice Language"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Magyar (Hungarian)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "English"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Deutsch (German)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Italiano (Italian)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Română (Romanian)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Slovenčina (Slovak)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Hrvatski (Croatian)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Français (French)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Español (Spanish)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Čeština (Czech)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Polski (Polish)"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Invoice Type"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Paper Invoice"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "E-Invoice"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Quantity Unit"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Shipping Title"
+msgstr ""
+
+#: includes/settings-fields.php
 msgid "Document Block ID"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Optional: Enter your Billingo document block (invoice pad) ID. If left empty, the first available invoice block will be used automatically."
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Payment Method"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Wire Transfer"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Cash"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Bank Card"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Check"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Cash on Delivery"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
+#: includes/settings-fields.php
 msgid "Other"
 msgstr ""
 
-#: integration-for-billingo-fluentcart.php
-msgid "Hungarian VAT ID"
+#: includes/settings-fields.php
+msgid "Shipping VAT Rate"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Apply to Tax Rates"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Warning:"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "No tax rates found. Please configure tax rates in FluentCart first."
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "All tax rates are already set to"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Current shipping VAT rates in use:"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "I am tax exempt"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Create invoice when cart total is zero"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Actions"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Shipping VAT Settings"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Apply Shipping VAT to All Tax Rates"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Cache Management"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Current cache size:"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Clearing the cache will delete all cached PDFs, XMLs, and logs."
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Clear Cache"
+msgstr ""
+
+#: includes/settings-page.php
+msgid "Save Settings"
 msgstr ""
 
 #: includes/vat.php
@@ -252,6 +256,10 @@ msgstr ""
 
 #: includes/vat.php
 msgid "Invalid tax number"
+msgstr ""
+
+#: includes/vat.php
+msgid "Hungarian VAT ID"
 msgstr ""
 
 #: includes/vat.php
