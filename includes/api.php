@@ -134,36 +134,3 @@ function fetch_invoice_pdf($order_id, $api_key, $invoice_number) {
     );
 }
 
-function build_partner_data($buyer_info) {
-    $partner = array(
-        'name' => $buyer_info['name'],
-        'address' => array(
-            'country_code' => $buyer_info['country'] ?: 'HU',
-            'post_code' => $buyer_info['postcode'],
-            'city' => $buyer_info['city'],
-            'address' => $buyer_info['address'],
-        ),
-    );
-    
-    if (!empty($buyer_info['email'])) {
-        $partner['emails'] = array($buyer_info['email']);
-    }
-    
-    if (!empty($buyer_info['tax_number'])) {
-        $partner['taxcode'] = $buyer_info['tax_number'];
-        
-        if (preg_match('/^([0-9]{8})-([12345])-([0-9]{2})$/', $buyer_info['tax_number'])) {
-            $partner['tax_type'] = 'HAS_TAX_NUMBER';
-        } else {
-            $partner['tax_type'] = 'FOREIGN';
-        }
-    } else {
-        $partner['tax_type'] = 'NO_TAX_NUMBER';
-    }
-    
-    if (!empty($buyer_info['phone'])) {
-        $partner['phone'] = $buyer_info['phone'];
-    }
-    
-    return $partner;
-}

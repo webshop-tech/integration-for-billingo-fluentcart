@@ -89,6 +89,41 @@ function create_buyer_data($order, $current_order_id, $api_key, $vat_number, $bi
     return $buyer_data;
 }
 
+function build_partner_data($buyer_info): array
+{
+    $partner = array(
+        'name' => $buyer_info['name'],
+        'address' => array(
+            'country_code' => $buyer_info['country'] ?: 'HU',
+            'post_code' => $buyer_info['postcode'],
+            'city' => $buyer_info['city'],
+            'address' => $buyer_info['address'],
+        ),
+    );
+
+    if (!empty($buyer_info['email'])) {
+        $partner['emails'] = array($buyer_info['email']);
+    }
+
+    if (!empty($buyer_info['tax_number'])) {
+        $partner['taxcode'] = $buyer_info['tax_number'];
+
+        if (preg_match('/^([0-9]{8})-([12345])-([0-9]{2})$/', $buyer_info['tax_number'])) {
+            $partner['tax_type'] = 'HAS_TAX_NUMBER';
+        } else {
+            $partner['tax_type'] = 'FOREIGN';
+        }
+    } else {
+        $partner['tax_type'] = 'NO_TAX_NUMBER';
+    }
+
+    if (!empty($buyer_info['phone'])) {
+        $partner['phone'] = $buyer_info['phone'];
+    }
+
+    return $partner;
+}
+
 function get_or_create_partner($order_id, $api_key, $buyer_data) {
     write_log($order_id, 'Getting or creating partner');
     
@@ -188,7 +223,7 @@ function generate_invoice($order, $current_order_id) {
     if (\is_wp_error($block_id)) {
         return $block_id;
     }
-    $payload = getPayload($order, $current_order_id, $partner['id'], $block_id);
+    $payload = get_payload($order, $current_order_id, $partner['id'], $block_id);
 
     write_log($current_order_id, 'Creating document via Billingo v3 API');
 
@@ -207,48 +242,6 @@ function generate_invoice($order, $current_order_id) {
         'document_id' => $result['id'],
         'gross_total' => $result['gross_total'] ?? null,
     );
-}
-
-function cancel_invoice($order, $reason) {
-    $order_id = $order->id;
-    
-    write_log($order_id, 'Invoice cancellation triggered', 'Order ID', $order_id);
-    
-    init_paths();
-    
-    $api_key = \get_option('billingo_fluentcart_agent_api_key', '');
-    
-    if (empty($api_key)) {
-        $error_message = 'API Key not configured';
-        write_log($order_id, 'Invoice cancellation failed', 'Error', $error_message);
-        log_activity($order_id, false, $error_message);
-        return;
-    }
-    
-    $document_id = get_document_id_by_order_id($order_id);
-    
-    if (empty($document_id) || $document_id == -1) {
-        $error_message = 'No invoice found for this order';
-        write_log($order_id, 'Invoice cancellation failed', 'Error', $error_message);
-        log_activity($order_id, false, $error_message);
-        return;
-    }
-    
-    write_log($order_id, 'Cancelling document via Billingo v3 API', 'Document ID', $document_id);
-    
-    $result = cancel_document_api($order_id, $api_key, $document_id, $reason);
-    
-    if (\is_wp_error($result)) {
-        $error_message = 'Failed to cancel invoice: ' . $result->get_error_message();
-        write_log($order_id, 'Invoice cancellation failed', 'Error', $error_message);
-        log_activity($order_id, false, $error_message);
-        return;
-    }
-    
-    write_log($order_id, 'Document cancelled successfully', 'Document ID', $document_id);
-    
-    $message = 'Billingo invoice cancelled successfully';
-    log_activity($order_id, true, $message);
 }
 
 function create_invoice($order, $main_order = null) {

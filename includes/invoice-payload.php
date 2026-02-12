@@ -2,9 +2,11 @@
 
 namespace BillingoFluentCart;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use FluentCart\App\Models\OrderItem;
 
-function getPayload($order, $current_order_id, $partner_id, $block_id)
+function get_payload($order, $current_order_id, $partner_id, $block_id)
 {
     $items_data = build_order_items_data($order, $current_order_id);
     if (\is_wp_error($items_data)) {
