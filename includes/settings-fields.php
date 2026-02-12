@@ -177,11 +177,11 @@ function add_settings_fields()
 
     \add_settings_field(
         'billingo_fluentcart_tax_exempt',
-        \__('I am tax exempt', 'integration-for-billingo-fluentcart'),
+        \__('Vat Exempt', 'integration-for-billingo-fluentcart'),
         function () {
             $value = \get_option('billingo_fluentcart_tax_exempt', 0);
             echo '<input type="checkbox" name="billingo_fluentcart_tax_exempt" value="1" ' . ($value ? 'checked' : '') . ' />';
-            echo '<label for="billingo_fluentcart_tax_exempt">' . \esc_html__('I am tax exempt', 'integration-for-billingo-fluentcart') . '</label>';
+            echo '<label for="billingo_fluentcart_tax_exempt">' . \esc_html__('I am exempt from Hungarian VAT.', 'integration-for-billingo-fluentcart') . '</label>';
         },
         'integration-for-billingo-fluentcart',
         'billingo_fluentcart_invoice_section'
@@ -189,11 +189,11 @@ function add_settings_fields()
 
     \add_settings_field(
         'billingo_fluentcart_zero_invoice',
-        \__('Create invoice when cart total is zero', 'integration-for-billingo-fluentcart'),
+        \__('Zero-Value Invoice', 'integration-for-billingo-fluentcart'),
         function () {
             $value = \get_option('billingo_fluentcart_zero_invoice', 1);
             echo '<input type="checkbox" name="billingo_fluentcart_zero_invoice" value="1" ' . ($value ? 'checked' : '') . ' />';
-            echo '<label for="billingo_fluentcart_zero_invoice">' . \esc_html__('Create invoice when cart total is zero', 'integration-for-billingo-fluentcart') . '</label>';
+            echo '<label for="billingo_fluentcart_zero_invoice">' . \esc_html__('Create invoice when cart total is zero.', 'integration-for-billingo-fluentcart') . '</label>';
         },
         'integration-for-billingo-fluentcart',
         'billingo_fluentcart_invoice_section'

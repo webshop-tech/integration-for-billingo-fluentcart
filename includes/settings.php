@@ -86,6 +86,20 @@ const INVOICE_TYPE_E_INVOICE = 2;
         'default' => 'Átutalás',
         'sanitize_callback' => 'sanitize_text_field'
     ]);
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_tax_exempt', [
+        'type' => 'boolean',
+        'default' => 0,
+        'sanitize_callback' => function($value) {
+            return $value ? 1 : 0;
+        }
+    ]);
+    \register_setting('billingo_fluentcart_settings', 'billingo_fluentcart_zero_invoice', [
+        'type' => 'boolean',
+        'default' => 1,
+        'sanitize_callback' => function($value) {
+            return $value ? 1 : 0;
+        }
+    ]);
     
     if (isset($_POST['billingo_fluentcart_clear_cache']) && \check_admin_referer('billingo_fluentcart_clear_cache_action', 'billingo_fluentcart_clear_cache_nonce')) {
         clear_cache();

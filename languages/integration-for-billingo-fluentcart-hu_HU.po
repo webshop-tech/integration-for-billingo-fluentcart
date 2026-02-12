@@ -258,13 +258,21 @@ msgstr "Érvényes adószám"
 msgid "Invalid tax number"
 msgstr "Érvénytelen adószám"
 
-#: includes/vat.php
-msgid "I am tax exempt"
-msgstr "Alany adómentes vagyok"
+#: includes/settings-fields.php
+msgid "Vat Exempt"
+msgstr "Adómentesség"
 
-#: includes/vat.php
-msgid "Create invoice when cart total is zero"
-msgstr "Számla létrehozása, ha a kosár értéke nulla"
+#: includes/settings-fields.php
+msgid "I am exempt from Hungarian VAT."
+msgstr "Alanyi adómentes vagyok."
+
+#: includes/settings-fields.php
+msgid "Zero-Value Invoice"
+msgstr "Nullás Számla"
+
+#: includes/settings-fields.php
+msgid "Create invoice when cart total is zero."
+msgstr "Számla kiállítása, ha a kosár értéke nulla."
 
 #: includes/vat.php
 msgid "Security check failed"

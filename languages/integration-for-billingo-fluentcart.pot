@@ -179,11 +179,19 @@ msgid "Current shipping VAT rates in use:"
 msgstr ""
 
 #: includes/settings-fields.php
-msgid "I am tax exempt"
+msgid "Vat Exempt"
 msgstr ""
 
 #: includes/settings-fields.php
-msgid "Create invoice when cart total is zero"
+msgid "I am exempt from Hungarian VAT."
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Zero-Value Invoice"
+msgstr ""
+
+#: includes/settings-fields.php
+msgid "Create invoice when cart total is zero."
 msgstr ""
 
 #: includes/settings-page.php
