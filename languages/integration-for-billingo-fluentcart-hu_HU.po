@@ -24,15 +24,15 @@ msgstr "Beállítások"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Cache cleared successfully"
-msgstr "A gyorsítótár sikeresen törölve"
+msgstr "Gyorsítótár sikeresen törölve"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Shipping VAT rate applied to all tax rates successfully"
-msgstr "A szállítási áfa mérték sikeresen alkalmazva az összes adómértékre"
+msgstr "Szállítási ÁFA mérték sikeresen alkalmazva az összes adómértékre"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Enter your Billingo API credentials below."
-msgstr "Add meg a Billingo API hitelesítési adatokat alább."
+msgstr "Add meg a Billingo API hitelesítési adatait alább"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Agent API Key"
@@ -44,7 +44,7 @@ msgstr "Mi ez?"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Shipping VAT Rate"
-msgstr "Szállítási áfa mérték"
+msgstr "Szállítási ÁFA mérték"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Apply to Tax Rates"
@@ -64,7 +64,7 @@ msgstr "Minden adómérték már be van állítva erre:"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Current shipping VAT rates in use:"
-msgstr "Jelenleg használt szállítási áfa mértékek:"
+msgstr "Jelenleg használt szállítási ÁFA mértékek:"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Invoice Settings"
@@ -172,7 +172,7 @@ msgstr "Szállítási ÁFA beállítása"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Apply Shipping VAT to All Tax Rates"
-msgstr "Szállítási áfa alkalmazása az összes adómértékre"
+msgstr "Szállítási ÁFA alkalmazása az összes adómértékre"
 
 #: integration-for-billingo-fluentcart.php
 msgid "API Settings"
@@ -192,7 +192,7 @@ msgstr "Fizetési mód"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Wire Transfer"
-msgstr "Átutalás"
+msgstr "Banki átutalás"
 
 #: integration-for-billingo-fluentcart.php
 msgid "Cash"
@@ -259,13 +259,21 @@ msgid "Invalid tax number"
 msgstr "Érvénytelen adószám"
 
 #: includes/vat.php
+msgid "I am tax exempt"
+msgstr "Alany adómentes vagyok"
+
+#: includes/vat.php
+msgid "Create invoice when cart total is zero"
+msgstr "Számla létrehozása, ha a kosár értéke nulla"
+
+#: includes/vat.php
 msgid "Security check failed"
 msgstr "Biztonsági ellenőrzés sikertelen"
 
 #: includes/vat.php
 msgid "VAT number is required"
-msgstr "Adószám szükséges"
+msgstr "Adószám megadása kötelező"
 
 #: includes/vat.php
 msgid "VAT has been applied successfully"
-msgstr "Az áfa sikeresen alkalmazva"
+msgstr "Az ÁFA sikeresen alkalmazva"
