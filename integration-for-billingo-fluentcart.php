@@ -3,7 +3,7 @@
  * Plugin Name: Integration for Billingo and FluentCart
  * Plugin URI: https://webshop.tech/integration-for-billingo-fluentcart/
  * Description: Generates invoices on Billingo for FluentCart orders
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Gábor Angyal
  * Author URI: https://webshop.tech
  * License: GPL v2 or later
